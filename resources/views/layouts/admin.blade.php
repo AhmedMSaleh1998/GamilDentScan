@@ -207,9 +207,9 @@
 
                         <li><a href="{{route('admin.patient.index')}}" class="waves-effect"><i
                                     class="ion-ios7-information-outline"></i> <span> المرضي </span></a></li>
-                        <li><a href="#" class="waves-effect"><i
+                        <li><a href="{{route('admin.dentist.index')}}" class="waves-effect"><i
                                     class="ion-ios7-information-outline"></i> <span> أطباء الأسنان </span></a></li>
-                        <li><a href="#" class="waves-effect"><i
+                        <li><a href="{{route('admin.technician.index')}}" class="waves-effect"><i
                                     class="ion-ios7-information-outline"></i> <span> فنيين الأشعة </span></a></li>
                         <li><a href="#" class="waves-effect"><i
                                     class="ion-ios7-information-outline"></i> <span>  أطباء المركز </span></a></li>

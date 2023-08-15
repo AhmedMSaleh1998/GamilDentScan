@@ -16,7 +16,7 @@
                 @elseif(Session::has('danger'))
                     <div class="alert alert-danger">{{ Session::get('danger') }}</div>
                 @endif
-                <h4 class="page-title">المرضي</h4>
+                <h4 class="page-title">اطباء الاسنان</h4>
             </div>
 
         </div>
@@ -30,7 +30,7 @@
                     <div class="col-sm-12">
                         <div class=" main-btn-00">
                             <!-- Responsive modal -->
-                            <a href="{{ route('admin.patient.create') }}" class="btn btn-default waves-effect"> اضافه مريض</a>
+                            <a href="{{ route('admin.dentist.create') }}" class="btn btn-default waves-effect">إضافة طبيب جديد</a>
                         </div>
                     </div>
                 </div>
@@ -42,33 +42,33 @@
 
                         <thead>
                             <tr>
-                                <th data-field="اسم المريض" data-align="center">اسم المريض</th>
-                                <th data-field="السن حالياً" data-align="center">السن حالياً</th>
-                                <th data-field="الهاتف" data-align="center">الهاتف</th>
+                                <th data-field="اسم الطبيب" data-align="center">اسم الطبيب</th>
+                                <th data-field="الهاتف 1" data-align="center">الهاتف 1</th>
+                                <th data-field="الهاتف 2" data-align="center">الهاتف 2</th>
                                 <th data-field="التحكم" data-align="center">التحكم</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @if (isset($patients)) --}}
-                            @foreach ($patients as $patient)
+                            {{-- @if (isset($dentists)) --}}
+                            @foreach ($dentists as $dentist)
                                 <tr>
-                                    <td>{{ $patient->name }}</td>
-                                    <td>{{ $patient->age()}}</td>
-                                    <td>{{ $patient->phone_one }}</td>
+                                    <td>{{ $dentist->name }}</td>
+                                    <td>{{ $dentist->phone_one}}</td>
+                                    <td>{{ $dentist->phone_two }}</td>
                                     
                                     <td class="actions">
-                                        <a href="{{ route('admin.patient.show', $patient->id) }}"
-                                            class="btn btn-info waves-effect" title="تفاصيل الحالة">تفاصيل الحالة</a>
-                                        <a href="{{ route('admin.patient.edit', $patient->id) }}"
+                                        <a href="{{ route('admin.dentist.show', $dentist->id) }}"
+                                            class="btn btn-info waves-effect" title="تفاصيل الطبيب">تفاصيل الطبيب</a>
+                                        <a href="{{ route('admin.dentist.edit', $dentist->id) }}"
                                             class="btn btn-success waves-effect" title="تعديل">تعديل</a>
                                         <button type="button" class="btn btn-danger waves-effect" data-toggle="modal"
-                                            data-target="#{{ $patient->id }}delete" title="حذف">حذف </button>
+                                            data-target="#{{ $dentist->id }}delete" title="حذف">حذف </button>
                                         <a href="#"
-                                            class="btn btn-inverse waves-effect" title="ملفات المريض">ملفات المريض</a>
+                                            class="btn btn-inverse waves-effect" title="حالات الطبيب">حالات الطبيب</a>
                                     </td>
                                 </tr>
 
-                                <div id="{{ $patient->id }}delete" class="modal fade" tabindex="-1" role="dialog"
+                                <div id="{{ $dentist->id }}delete" class="modal fade" tabindex="-1" role="dialog"
                                     aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                     <div class="modal-dialog" style="width:55%;">
                                         <div class="modal-content">
@@ -83,7 +83,7 @@
                                                 <h4 style="text-align:center;">تأكيد الحذف</h4>
                                             </div>
                                             <div class="modal-footer" style="text-align:center">
-                                                <form action="{{ route('admin.patient.destroy', $patient->id) }}"
+                                                <form action="{{ route('admin.dentist.destroy', $dentist->id) }}"
                                                     method="post">
                                                     @csrf
                                                     <input name="_method" type="hidden" value="DELETE">

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AddPatientRequest;
-use App\Http\Requests\EditPatientRequest;
+use App\Http\Requests\Patient\AddPatientRequest;
+use App\Http\Requests\Patient\EditPatientRequest;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 
@@ -32,7 +32,7 @@ class PatientController extends Controller
     public function store(AddPatientRequest $request)
     {
         Patient::create($request->validated());
-        return redirect(route('admin.patient.index'))->with(['success' => 'تم إنشاء مريض جديد بنجاح']);
+        return redirect(route('admin.patient.index'))->with(['success' => 'تم إنشاء طبيب اسنان جديد بنجاح']);
     }
 
     /**
@@ -41,13 +41,13 @@ class PatientController extends Controller
     public function show($id)
     {
         $patient = Patient::find($id);
-        return view('admin.patient.show', compact('patient'))->with(['success' => 'تم عرض الحالة بنجاح']);
+        return view('admin.patient.show', compact('patient'))->with(['success' => 'تم عرض الطبيب بنجاح']);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         $patient = Patient::find($id);
         return view('admin.patient.edit', compact('patient'));
@@ -61,14 +61,16 @@ class PatientController extends Controller
         $patient = Patient::find($id);
         $newPatient = $request->validated();
         $patient->update($newPatient);
-        return redirect(route('admin.patient.index'))->with(['success' => 'تم تعديل بيانات المريض جديد بنجاح']);
+        return redirect(route('admin.patient.index'))->with(['success' => 'تم تعديل بيانات الطبيب بنجاح']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $patient = Patient::find($id);
+        $patient->delete();
+        return redirect(route('admin.patient.index'))->with(['success' => 'تم حذف بيانات الطبيب بنجاح']);
     }
 }

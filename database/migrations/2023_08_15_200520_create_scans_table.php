@@ -33,6 +33,7 @@ class CreateScansTable extends Migration {
 			$table->datetime('reciving_time')->nullable();
 			$table->datetime('recieved_time')->nullable();
 			$table->string('reciever_name', 255)->nullable();
+			$table->tinyInteger('status')->default('0');
 		});
 	}
 

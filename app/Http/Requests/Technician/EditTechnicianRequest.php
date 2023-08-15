@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Technician;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddPatientRequest extends FormRequest
+class EditTechnicianRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,11 @@ class AddPatientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'          => 'required',
-            'birth_date' => 'required',
-            'address'       => 'nullable',
-            'phone_one'     => 'nullable',
-            'phone_two'     => 'nullable',
-            'email'         => 'nullable',
+            'name'  => 'required',
+            'phone' => 'required',
+            'address' => 'nullable',
+            'fixed_salary' => 'required',
+            'email' => 'nullable',
         ];
     }
 }
