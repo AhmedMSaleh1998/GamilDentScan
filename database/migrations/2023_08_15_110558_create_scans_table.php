@@ -3,11 +3,11 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePatientScansTable extends Migration {
+class CreateScansTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('patient_scans', function(Blueprint $table) {
+		Schema::create('scans', function(Blueprint $table) {
 			$table->increments('id');
 			$table->timestamps();
 			$table->softDeletes();
@@ -16,9 +16,7 @@ class CreatePatientScansTable extends Migration {
 			$table->string('current_price');
 			$table->string('current_discount', 25)->nullable();
 			$table->tinyInteger('is_recieved')->default('0');
-			$table->datetime('recieve_time')->nullable();
-			$table->string('reciever_name', 255)->nullable();
-			$table->integer('doctor_id')->unsigned()->nullable();
+			$table->integer('dentist_id')->unsigned()->nullable();
 			$table->integer('reciptionist_id')->unsigned();
 			$table->integer('technician_id')->unsigned();
 			$table->string('total_price_after_discount', 255);
@@ -27,11 +25,19 @@ class CreatePatientScansTable extends Migration {
 			$table->integer('payment_method_id')->unsigned();
 			$table->string('file')->nullable();
 			$table->string('dicom_file_link')->nullable();
+			$table->string('current_reciptionist_commission');
+			$table->string('current_technician_commission')->nullable();
+			$table->datetime('reservation_time')->nullable();
+			$table->string('working_on_time')->nullable();
+			$table->datetime('delivery_time')->nullable();
+			$table->datetime('reciving_time')->nullable();
+			$table->datetime('recieved_time')->nullable();
+			$table->string('reciever_name', 255)->nullable();
 		});
 	}
 
 	public function down()
 	{
-		Schema::drop('patient_scans');
+		Schema::drop('scans');
 	}
 }

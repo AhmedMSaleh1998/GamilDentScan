@@ -30,7 +30,7 @@
                     <div class="col-sm-12">
                         <div class=" main-btn-00">
                             <!-- Responsive modal -->
-                            <a href="{{ route('admin.patient.create') }}" class="btn btn-default waves-effect">اضافه مريض+</a>
+                            <a href="{{ route('admin.patient.create') }}" class="btn btn-default waves-effect"> اضافه مريض</a>
                         </div>
                     </div>
                 </div>
@@ -52,23 +52,21 @@
                             {{-- @if (isset($patients)) --}}
                             @foreach ($patients as $patient)
                                 <tr>
-                                    <td><img src="{{ asset('admin_assets/images/patients/' . $patient->image) }}"
-                                            class="img-responsive" width="100px" height="100px"></td>
-                                    <td>{{ $patient->name_ar }}</td>
-                                    <td>{{ $patient->name_en }}</td>
-                                    <td>{{ $patient->status === 1 ? 'مفعل' : 'غير مفعل' }}</td>
+                                    <td>{{ $patient->name }}</td>
+                                    <td>{{ $patient->phone_one }}</td>
+                                    <td>{{ $patient->status === 1 ? 'تم تأكيد الحجز' : 'غير مؤكد' }}</td>
 
                                     <td class="actions">
-                                        <a href="{{ route('admin.changeStatus', [$patient->status, 'patients', $patient->id]) }}"
-                                            class="btn btn-{{ $patient->status == 1 ? 'secondary' : 'dark' }} waves-effect"
-                                            title="الحالة"> {{ $patient->status == 1 ? 'إبطال' : 'تفعيل' }}</a>
+                                        <a href="#"
+                                            class="btn btn-{{ $patient->status == 1 ? 'danger' : 'success' }} waves-effect"
+                                            title="الحالة"> {{ $patient->status == 1 ? 'الغاء الحجز' : 'تأكيد الحجز' }}</a>
                                         <a href="{{ route('admin.patient.show', $patient->id) }}"
                                             class="btn btn-inverse waves-effect" title="مشاهدة">مشاهدة</a>
                                         <a href="{{ route('admin.patient.edit', $patient->id) }}"
                                             class="btn btn-success waves-effect" title="تعديل">تعديل</a>
                                         <button type="button" class="btn btn-danger waves-effect" data-toggle="modal"
                                             data-target="#{{ $patient->id }}delete" title="حذف">حذف </button>
-                                        <a href="{{ route('admin.patientImages.show', $patient->id) }}"
+                                        <a href="#"
                                             class="btn btn-inverse waves-effect" title="ملفات المريض">ملفات المريض</a>
                                     </td>
                                 </tr>

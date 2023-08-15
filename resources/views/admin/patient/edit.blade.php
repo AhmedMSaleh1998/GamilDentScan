@@ -24,7 +24,7 @@
                 <div class="alert alert-danger">{{ Session::get('danger') }}</div>
             @endif
             <a style="color: #fff;" href="{{ route('admin.home') }}">الرئيسية</a>
-            <a style="color: #fff;" href="{{ route('admin.projects.index') }}">/ المنتجات / </a>
+            <a style="color: #fff;" href="{{ route('admin.patient.index') }}">/ المرضي / </a>
             <a style="color: #36404a;"> تعديل </a>
 
             <ul>
@@ -37,104 +37,77 @@
     <div class="row">
         <div class="col-12">
             <div class="card-box">
-                <h4 class="header-title m-t-0 m-b-20">تعديل منتج</h4>
-                {{ Form::model($project, ['method' => 'PATCH', 'action' => ['App\Http\Controllers\Admin\ProjectController@update', $project->id], 'files' => true]) }}
+                <h4 class="header-title m-t-0 m-b-20">تعديل بيانات مريض</h4>
+                <form method="post" action="{{route('admin.patient.update'),$patient->id}}">
                 @csrf
                 @method('PUT')
                 <table class="table table-bordered table-striped">
                     <tbody>
                         <tr>
-                            <td>الصورة</td>
+                            <td>الاسم</td>
+                            <td><input type="text" class="form-control" name="name" required
+                                    value="{{ old('name') ? old('name') : $patient->name }}"></td>
+                            @if ($errors->has('name'))
+                                <span class="alert alert-danger">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                            @endif
+                        </tr>
+                        <tr>
+                            <td>الايميل</td>
+                            <td><input type="text" class="form-control" name="email" required
+                                    value="{{ old('email') ? old('email') : $patient->email }}"></td>
+                            @if ($errors->has('email'))
+                                <span class="alert alert-danger">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                        </tr>
+                        <tr>
+                            <td>رقم الهاتف 1</td>
+                            <td><input type="text" class="form-control" name="phone_one" required
+                                    value="{{ old('phone_one') ? old('phone_one') : $patient->phone_one }}"></td>
+                            @if ($errors->has('phone_one'))
+                                <span class="alert alert-danger">
+                                    <strong>{{ $errors->first('phone_one') }}</strong>
+                                </span>
+                            @endif
+                        </tr>
+                        <tr>
+                            <td>رقم الهاتف 2</td>
+                            <td><input type="text" class="form-control" name="phone_two" required
+                                    value="{{ old('phone_two') ? old('phone_two') : $patient->phone_two }}"></td>
+                            @if ($errors->has('phone_two'))
+                                <span class="alert alert-danger">
+                                    <strong>{{ $errors->first('phone_two') }}</strong>
+                                </span>
+                            @endif
+                        </tr>
+                        <tr>
+                            <td>العنوان</td>
+                            <td><input type="text" class="form-control" name="address" required
+                                    value="{{ old('address') ? old('address') : $patient->address }}"></td>
+                            @if ($errors->has('address'))
+                                <span class="alert alert-danger">
+                                    <strong>{{ $errors->first('address') }}</strong>
+                                </span>
+                            @endif
+                        </tr>
+                        <tr>
+                            <td>الحالة</td>
                             <td>
-                                <input type="file" class="filestyle" data-placeholder="No file"
-                                    data-iconname="fa fa-cloud-upload" name="image"
-                                    value="{{ old('image') ? old('image') : $project->images }}">
-                                <img src="{{ asset('admin_assets/images/projects/' . $project->image) }}"
-                                    class="img-responsive" width="100px" height="100px">
-                                @if ($errors->has('image'))
-                                    <span class="alert alert-danger">
-                                        <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
-                                @endif
-
+                                <select id="status" name="status" class="form-control">{{ old('status') ? old('status') : $patient->status }}>
+                                <option value="0">تم الحجز</option>
+                                <option value="1">تم تأكيد الحجز</option>
+                                <option value="2">تم الفحص</option>
+                                <option value="3">تم الاستلام</option>
+                                </select>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>الاسم انجليزى</td>
-                            <td><input type="text" class="form-control" name="name_en" required
-                                    value="{{ old('name_en') ? old('name_en') : $project->name_en }}"></td>
-                            @if ($errors->has('name_en'))
+                            @if ($errors->has('status'))
                                 <span class="alert alert-danger">
-                                    <strong>{{ $errors->first('name_en') }}</strong>
+                                    <strong>{{ $errors->first('status') }}</strong>
                                 </span>
                             @endif
-                        </tr>
-                        <tr>
-                            <td>الاسم عربي</td>
-                            <td><input type="text" class="form-control" name="name_ar" required
-                                    value="{{ old('name_ar') ? old('name_ar') : $project->name_ar }}"></td>
-                            @if ($errors->has('name_ar'))
-                                <span class="alert alert-danger">
-                                    <strong>{{ $errors->first('name_ar') }}</strong>
-                                </span>
-                            @endif
-                        </tr>
-                        <tr>
-                            <td>الوصف انجليزى</td>
-                            <td>
-                                <textarea id="textarea" maxlength="100" class="form-control" name="description_en">{{ old('description_en') ? old('description_en') : $project->description_en }}</textarea>
-                            </td>
-                            @if ($errors->has('description_en'))
-                                <span class="alert alert-danger">
-                                    <strong>{{ $errors->first('description_en') }}</strong>
-                                </span>
-                            @endif
-                        </tr>
-                        <tr>
-                            <td>الوصف عربي</td>
-                            <td>
-                                <textarea id="textarea" maxlength="100" class="form-control" name="description_ar">{{ old('description_ar') ? old('description_ar') : $project->description_ar }}</textarea>
-                            </td>
-                            @if ($errors->has('description_ar'))
-                                <span class="alert alert-danger">
-                                    <strong>{{ $errors->first('description_ar') }}</strong>
-                                </span>
-                            @endif
-                        </tr>
-                        <tr>
-                            <td>المحتوي انجليزى</td>
-                            <td>
-                                <textarea id="content2" name="content_en">{{ old('content_en') ? old('content_en') : $project->content_en }}</textarea>
-                            </td>
-                            @if ($errors->has('content_en'))
-                                <span class="alert alert-danger">
-                                    <strong>{{ $errors->first('content_en') }}</strong>
-                                </span>
-                            @endif
-                        </tr>
-                        <tr>
-                            <td>المحتوي عربي</td>
-                            <td>
-                                <textarea id="content2" name="content_ar">{{ old('content_en') ? old('content_en') : $project->content_en }}</textarea>
-                            </td>
-                            @if ($errors->has('content_ar'))
-                                <span class="alert alert-danger">
-                                    <strong>{{ $errors->first('content_ar') }}</strong>
-                                </span>
-                            @endif
-                        </tr>
-                        <tr>
-                            <td>اظهار فى الصفحة الرئيسية</td>
-                            {{ Form::hidden('home', 0) }}
-
-                            <td><input type="checkbox" {{ $project->home == 1 ? 'checked' : '' }} data-plugin="switchery"
-                                    data-color="#5d9cec" data-switchery="true" style="display: none;" name="home"
-                                    value="1">
-                                @if ($errors->has('home'))
-                                    <span class="alert alert-danger">
-                                        <strong>{{ $errors->first('home') }}</strong>
-                                    </span>
-                                @endif
                         </tr>
                         <tr>
                             <td style="width:25%"></td>
@@ -143,7 +116,7 @@
                         </tr>
                     </tbody>
                 </table>
-                {!! Form::close() !!}
+                <form>
 
             </div>
         </div><!-- end col -->

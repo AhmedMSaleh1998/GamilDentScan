@@ -14,6 +14,6 @@ class Scan extends Model
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('name', 'price', 'commision', 'base_recieving_time');
+    protected $fillable = array('patient_id', 'scan_id', 'current_price', 'current_discount', 'is_recieved', 'dentist_id', 'reciptionist_id', 'technician_id', 'total_price_after_discount', 'paid_by_patient', 'whatsapp_sent', 'file', 'dicom_file_link', 'current_reciptionist_commission', 'current_technician_commission', 'reservation_time', 'working_on_time', 'delivery_time', 'reciving_time', 'recieved_time', 'reciever_name');
 
 }
