@@ -22,7 +22,7 @@
         <div class="alert alert-danger">{{ Session::get('danger') }}</div>
         @endif
         <a style="color: #fff;" href="{{ route('admin.home') }}">الرئيسية</a>
-        <a style="color: #fff;" href="{{ route('admin.technician.index') }}">/ فنيي الأشعة / </a>
+        <a style="color: #fff;" href="{{ route('admin.receptionist.index') }}">/ فنيي الأشعة / </a>
         <a style="color: #36404a;"> إضافة </a>
 
         <ul>
@@ -36,13 +36,13 @@
     <div class="col-12">
         <div class="card-box">
             <h4 class="header-title m-t-0 m-b-20">اضافه فني جديد</h4>
-        <form action="{{route('admin.technician.store')}}" method="post">
+        <form action="{{route('admin.receptionist.store')}}" method="post">
             @csrf
             <table class="table table-bordered table-striped">
                 <tbody>
 
                     <tr>
-                        <td>اسم الفني</td>
+                        <td>اسم الموظف</td>
                         <td><input type="text" class="form-control" name="name" required value="{{ old('name') }}"></td>
                         @if ($errors->has('name'))
                         <span class="alert alert-danger">

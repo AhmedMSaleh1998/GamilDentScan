@@ -211,13 +211,13 @@
                                     class="ion-ios7-information-outline"></i> <span> أطباء الأسنان </span></a></li>
                         <li><a href="{{route('admin.technician.index')}}" class="waves-effect"><i
                                     class="ion-ios7-information-outline"></i> <span> فنيين الأشعة </span></a></li>
-                        <li><a href="#" class="waves-effect"><i
+                        <li><a href="{{route('admin.doctor.index')}}" class="waves-effect"><i
                                     class="ion-ios7-information-outline"></i> <span>  أطباء المركز </span></a></li>
-                        <li><a href="#" class="waves-effect"><i
+                        <li><a href="{{route('admin.receptionist.index')}}" class="waves-effect"><i
                                     class="ion-ios7-information-outline"></i> <span> موظفي الريسبشن </span></a></li>
-                        <li><a href="#" class="waves-effect"><i
+                        <li><a href="{{route('admin.scanType.index')}}" class="waves-effect"><i
                                     class="ion-ios7-information-outline"></i> <span> أنواع الأشعة </span></a>
-                        <li><a href="#" class="waves-effect"><i
+                        <li><a href="{{route('admin.district.index')}}" class="waves-effect"><i
                                     class="ion-ios7-information-outline"></i> <span> المناطق </span></a></li>
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class=" dripicons-view-list"></i>

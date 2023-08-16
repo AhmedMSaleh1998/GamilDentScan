@@ -20,12 +20,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/home', 'IndexController@index')->name('home');
         Route::resource('patient', 'PatientController');
         Route::resource('dentist', 'DentistController');
-        Route::resource('scantype', 'ScanTypeController');
+        Route::resource('scanType', 'ScanTypeController');
         Route::resource('scan', 'ScanController');
-        Route::resource('reception', 'ReceptionController');
+        Route::resource('receptionist', 'ReceptionistController');
         Route::resource('technician', 'TechnicianController');
         Route::resource('paymentmethod', 'PaymentMethodController');
         Route::resource('doctor', 'DoctorController');
         Route::resource('scanfile', 'ScanFileController');
+        Route::resource('district', 'DistrictController');
     });
+    Route::get('/https://wa.me/{phone}?text=')->name('whatsapp');
 });

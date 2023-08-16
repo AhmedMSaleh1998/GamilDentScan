@@ -13,7 +13,8 @@ class CreateScansTypesTable extends Migration {
 			$table->softDeletes();
 			$table->string('name', 50);
 			$table->string('price');
-			$table->integer('commision');
+			$table->integer('receptionist_commision');
+			$table->integer('technicain_commision');
 			$table->string('base_recieving_time');
 		});
 	}

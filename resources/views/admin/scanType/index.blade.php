@@ -16,7 +16,7 @@
                 @elseif(Session::has('danger'))
                     <div class="alert alert-danger">{{ Session::get('danger') }}</div>
                 @endif
-                <h4 class="page-title">اطباء الاسنان</h4>
+                <h4 class="page-title">انواع الفحوصات</h4>
             </div>
 
         </div>
@@ -30,7 +30,7 @@
                     <div class="col-sm-12">
                         <div class=" main-btn-00">
                             <!-- Responsive modal -->
-                            <a href="{{ route('admin.dentist.create') }}" class="btn btn-default waves-effect">إضافة طبيب جديد</a>
+                            <a href="{{ route('admin.scanType.create') }}" class="btn btn-default waves-effect">إضافة نوع فحص جديد</a>
                         </div>
                     </div>
                 </div>
@@ -42,33 +42,33 @@
 
                         <thead>
                             <tr>
-                                <th data-field="اسم الطبيب" data-align="center">اسم الطبيب</th>
-                                <th data-field="الهاتف الشخصي" data-align="center">الهاتف الشخصي</th>
-                                <th data-field="هاتف العيادة" data-align="center">هاتف العيادة</th>
+                                <th data-field="اسم الطبيب" data-align="center">نوع الفحص</th>
+                                <th data-field="السعر" data-align="center">السعر</th>
+                                <th data-field="الوقت المتوقع للأستلام" data-align="center">الوقت المتوقع للأستلام</th>
                                 <th data-field="التحكم" data-align="center">التحكم</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @if (isset($dentists)) --}}
-                            @foreach ($dentists as $dentist)
+                            {{-- @if (isset($scanTypes)) --}}
+                            @foreach ($scanTypes as $scanType)
                                 <tr>
-                                    <td>{{ $dentist->name }}</td>
-                                    <td>{{ $dentist->phone_one}}<a href="https://wa.me/".{{$dentist->phone_one}}? .>link</a></td>
-                                    <td>{{ $dentist->phone_two }}<a href={{route('whatsapp',$dentist->phone_two)}}>link</a></td>
+                                    <td>{{ $scanType->name }}</td>
+                                    <td>{{ $scanType->price}}</td>
+                                    <td>{{ $scanType->base_recieving_time }}</td>
                                     
                                     <td class="actions">
-                                        <a href="{{ route('admin.dentist.show', $dentist->id) }}"
-                                            class="btn btn-info waves-effect" title="تفاصيل الطبيب">تفاصيل الطبيب</a>
-                                        <a href="{{ route('admin.dentist.edit', $dentist->id) }}"
+                                        <a href="{{ route('admin.scanType.show', $scanType->id) }}"
+                                            class="btn btn-info waves-effect" title="تفاصيل الفحص">تفاصيل الفحص</a>
+                                        <a href="{{ route('admin.scanType.edit', $scanType->id) }}"
                                             class="btn btn-success waves-effect" title="تعديل">تعديل</a>
                                         <button type="button" class="btn btn-danger waves-effect" data-toggle="modal"
-                                            data-target="#{{ $dentist->id }}delete" title="حذف">حذف </button>
+                                            data-target="#{{ $scanType->id }}delete" title="حذف">حذف </button>
                                         <a href="#"
-                                            class="btn btn-inverse waves-effect" title="حالات الطبيب">حالات الطبيب</a>
+                                            class="btn btn-inverse waves-effect" title="حالات الفحص">حالات الفحص</a>
                                     </td>
                                 </tr>
 
-                                <div id="{{ $dentist->id }}delete" class="modal fade" tabindex="-1" role="dialog"
+                                <div id="{{ $scanType->id }}delete" class="modal fade" tabindex="-1" role="dialog"
                                     aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                     <div class="modal-dialog" style="width:55%;">
                                         <div class="modal-content">
@@ -83,7 +83,7 @@
                                                 <h4 style="text-align:center;">تأكيد الحذف</h4>
                                             </div>
                                             <div class="modal-footer" style="text-align:center">
-                                                <form action="{{ route('admin.dentist.destroy', $dentist->id) }}"
+                                                <form action="{{ route('admin.scanType.destroy', $scanType->id) }}"
                                                     method="post">
                                                     @csrf
                                                     <input name="_method" type="hidden" value="DELETE">

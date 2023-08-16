@@ -10,7 +10,7 @@
                 <div class="alert alert-danger">{{ Session::get('danger') }}</div>
             @endif
             <a style="color: #fff;" href="{{route('admin.home')}}">الرئيسية</a>
-            <a style="color: #fff;" href="{{route('admin.technician.index')}}">/ فنيي الاشعة / </a>
+            <a style="color: #fff;" href="{{route('admin.scanType.index')}}">/ انواع الأشعة / </a>
             <a style="color: #36404a;"> مشاهدة </a>
 
             <ul>
@@ -23,34 +23,34 @@
     <div class="row">
         <div class="col-12">
             <div class="card-box">
-                <h4 class="header-title m-t-0 m-b-20">{{$technician->name}}</h4>
+                <h4 class="header-title m-t-0 m-b-20">{{$scanType->name}}</h4>
 
                 <table class="table table-bordered table-striped">
                     <tbody>
 
                         <tr>
                             <td>الاسم </td>
-                            <td>{{ $technician->name }}</td>
+                            <td>{{ $scanType->name }}</td>
                         </tr>
                         <tr>
-                            <td>الايميل </td>
-                            <td>{{ $technician->email }}</td>
+                            <td>الاسم </td>
+                            <td>{{ $scanType->price }}</td>
                         </tr>
                         <tr>
-                            <td>الهاتف</td>
-                            <td>{{ $technician->phone }}</td>
+                            <td>نسبة الريسبشن </td>
+                            <td>{{ $scanType->receptionist_commision }}</td>
                         </tr>
                         <tr>
-                            <td>العنوان</td>
-                            <td>{{ $technician->address }}</td>
+                            <td>نسبة فني الأشعة </td>
+                            <td>{{ $scanType->technicain_commision }}</td>
                         </tr>
                         <tr>
-                            <td>ثابت الراتب</td>
-                            <td>{{ $technician->fixed_salary }}</td>
+                            <td> الوقت المتوقع للأستلام</td>
+                            <td>{{ $scanType->base_recieving_time }}</td>
                         </tr>
                         {{-- <tr>
                             <td>صور المشروع</td>
-                            @foreach ($technician->projectImages as $image)
+                            @foreach ($scanType->projectImages as $image)
                             <td><img src="{{ asset('admin_assets/images/projects/'.$image->image) }}" class="img-responsive" width="100px" height="100px"></td>
                             @endforeach
                         </tr> --}}

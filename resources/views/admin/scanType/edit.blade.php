@@ -24,7 +24,7 @@
                 <div class="alert alert-danger">{{ Session::get('danger') }}</div>
             @endif
             <a style="color: #fff;" href="{{ route('admin.home') }}">الرئيسية</a>
-            <a style="color: #fff;" href="{{ route('admin.patient.index') }}">/ المرضي / </a>
+            <a style="color: #fff;" href="{{ route('admin.scanType.index') }}">/ انواع الفحوصات / </a>
             <a style="color: #36404a;"> تعديل </a>
 
             <ul>
@@ -37,16 +37,16 @@
     <div class="row">
         <div class="col-12">
             <div class="card-box">
-                <h4 class="header-title m-t-0 m-b-20">تعديل بيانات مريض</h4>
-                <form method="post" action="{{route('admin.patient.update',$patient->id)}}">
+                <h4 class="header-title m-t-0 m-b-20">تعديل بيانات الفحص</h4>
+                <form method="post" action="{{route('admin.scanType.update',$scanType->id)}}">
                 @csrf
                 @method('PUT')
                 <table class="table table-bordered table-striped">
                     <tbody>
                         <tr>
-                            <td>الاسم</td>
+                            <td>نوع الفحص</td>
                             <td><input type="text" class="form-control" name="name" required
-                                    value="{{ old('name') ? old('name') : $patient->name }}"></td>
+                                    value="{{ old('name') ? old('name') : $scanType->name }}"></td>
                             @if ($errors->has('name'))
                                 <span class="alert alert-danger">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -54,71 +54,45 @@
                             @endif
                         </tr>
                         <tr>
-                            <td>الاسم</td>
-                            <td><input type="date" class="form-control" name="birth_date"
-                                    value="{{ old('birth_date') ? old('birth_date') : $patient->birth_date }}"></td>
-                            @if ($errors->has('birth_date'))
+                            <td>السعر</td>
+                            <td><input type="text" class="form-control" name="price"
+                                    value="{{ old('price') ? old('price') : $scanType->price }}"></td>
+                            @if ($errors->has('price'))
                                 <span class="alert alert-danger">
-                                    <strong>{{ $errors->first('birth_date') }}</strong>
+                                    <strong>{{ $errors->first('price') }}</strong>
                                 </span>
                             @endif
                         </tr>
                         <tr>
-                            <td>الايميل</td>
-                            <td><input type="text" class="form-control" name="email"
-                                    value="{{ old('email') ? old('email') : $patient->email }}"></td>
-                            @if ($errors->has('email'))
+                            <td>نسبة الريسبشن</td>
+                            <td><input type="number" class="form-control" name="receptionist_commision"
+                                    value="{{ old('receptionist_commision') ? old('receptionist_commision') : $scanType->receptionist_commision }}"></td>
+                            @if ($errors->has('receptionist_commision'))
                                 <span class="alert alert-danger">
-                                    <strong>{{ $errors->first('email') }}</strong>
+                                    <strong>{{ $errors->first('receptionist_commision') }}</strong>
                                 </span>
                             @endif
                         </tr>
                         <tr>
-                            <td>رقم الهاتف 1</td>
-                            <td><input type="text" class="form-control" name="phone_one"
-                                    value="{{ old('phone_one') ? old('phone_one') : $patient->phone_one }}"></td>
-                            @if ($errors->has('phone_one'))
+                            <td>نسبة فني الأشعة</td>
+                            <td><input type="number" class="form-control" name="technicain_commision"
+                                    value="{{ old('technicain_commision') ? old('technicain_commision') : $scanType->technicain_commision }}"></td>
+                            @if ($errors->has('technicain_commision'))
                                 <span class="alert alert-danger">
-                                    <strong>{{ $errors->first('phone_one') }}</strong>
+                                    <strong>{{ $errors->first('technicain_commision') }}</strong>
                                 </span>
                             @endif
                         </tr>
                         <tr>
-                            <td>رقم الهاتف 2</td>
-                            <td><input type="text" class="form-control" name="phone_two"
-                                    value="{{ old('phone_two') ? old('phone_two') : $patient->phone_two }}"></td>
-                            @if ($errors->has('phone_two'))
+                            <td>الوقت المتوقع للأستلام</td>
+                            <td><input type="text" class="form-control" name="base_recieving_time"
+                                    value="{{ old('base_recieving_time') ? old('base_recieving_time') : $scanType->base_recieving_time }}"></td>
+                            @if ($errors->has('base_recieving_time'))
                                 <span class="alert alert-danger">
-                                    <strong>{{ $errors->first('phone_two') }}</strong>
+                                    <strong>{{ $errors->first('base_recieving_time') }}</strong>
                                 </span>
                             @endif
                         </tr>
-                        <tr>
-                            <td>العنوان</td>
-                            <td><input type="text" class="form-control" name="address"
-                                    value="{{ old('address') ? old('address') : $patient->address }}"></td>
-                            @if ($errors->has('address'))
-                                <span class="alert alert-danger">
-                                    <strong>{{ $errors->first('address') }}</strong>
-                                </span>
-                            @endif
-                        </tr>
-                       {{--  <tr>
-                            <td>الحالة</td>
-                            <td>
-                                <select id="status" name="status" class="form-control">{{ old('status') ? old('status') : $patient->status }}>
-                                <option value="0">تم الحجز</option>
-                                <option value="1">تم تأكيد الحجز</option>
-                                <option value="2">تم الفحص</option>
-                                <option value="3">تم الاستلام</option>
-                                </select>
-                            </td>
-                            @if ($errors->has('status'))
-                                <span class="alert alert-danger">
-                                    <strong>{{ $errors->first('status') }}</strong>
-                                </span>
-                            @endif
-                        </tr> --}}
                         <tr>
                             <td style="width:25%"></td>
                             <td><button type="submit"

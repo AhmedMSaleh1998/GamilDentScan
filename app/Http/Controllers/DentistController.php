@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Dentist\AddDentistRequest;
 use App\Http\Requests\Dentist\EditDentistRequest;
-use Illuminate\Http\Request;
 use App\Models\Dentist;
+use Illuminate\Http\Request;
 class DentistController extends Controller
 {
     /**
