@@ -219,6 +219,8 @@
                                     class="ion-ios7-information-outline"></i> <span> أنواع الأشعة </span></a>
                         <li><a href="{{route('admin.district.index')}}" class="waves-effect"><i
                                     class="ion-ios7-information-outline"></i> <span> المناطق </span></a></li>
+                        <li><a href="#" class="waves-effect"><i
+                                        class="ion-ios7-information-outline"></i> <span> جميع الفحوصات </span></a></li>
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class=" dripicons-view-list"></i>
                                 <span> المسئوليين و الادوار </span> <span class="menu-arrow"></span></a>

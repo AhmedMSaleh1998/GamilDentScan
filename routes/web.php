@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ScanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,15 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::resource('dentist', 'DentistController');
         Route::resource('scanType', 'ScanTypeController');
         Route::resource('scan', 'ScanController');
+        Route::controller(ScanController::class)->group(
+            function () {
+                Route::get('patient/{patient_id}/scans/', 'index')->name('patient.scans.index');
+                Route::get('patient/{patient_id}/scans/create', 'create')->name('patient.scans.create');
+                Route::get('patient/{patient_id}/scans/store', 'store')->name('patient.scans.store');
+                Route::get('patient/{patient_id}/scans/update', 'update')->name('patient.scans.update');
+                Route::get('patient/{patient_id}/scans/delete', 'delete')->name('patient.scans.delete');
+            }
+        );
         Route::resource('receptionist', 'ReceptionistController');
         Route::resource('technician', 'TechnicianController');
         Route::resource('paymentmethod', 'PaymentMethodController');

@@ -27,7 +27,7 @@ class AddPatientRequest extends FormRequest
             'address'       => 'nullable',
             'phone_one'     => 'nullable',
             'phone_two'     => 'nullable',
-            'email'         => 'nullable',
+            'email'         => 'nullable|email',
         ];
     }
 }
