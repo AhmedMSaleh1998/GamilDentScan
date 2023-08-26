@@ -69,7 +69,7 @@
                         @endif
                     </tr>
                     <tr>
-                        <td>الهاتف رقم 1</td>
+                        <td>الهاتف الشخصي</td>
                         <td><input type="phone" class="form-control" name="phone_one"  value="{{ old('phone_one') }}"></td>
                         @if ($errors->has('phone_one'))
                         <span class="alert alert-danger">
@@ -78,7 +78,7 @@
                         @endif
                     </tr>
                     <tr>
-                        <td>الهاتف رقم 2</td>
+                        <td>هاتف العيادة</td>
                         <td><input type="phone" class="form-control" name="phone_two"  value="{{ old('phone_two') }}"></td>
                         @if ($errors->has('phone_two'))
                         <span class="alert alert-danger">

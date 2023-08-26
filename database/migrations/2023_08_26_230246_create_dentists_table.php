@@ -18,6 +18,7 @@ class CreateDentistsTable extends Migration {
 			$table->string('address_two')->nullable();
 			$table->string('email_one')->nullable();
 			$table->string('email_two')->nullable();
+			$table->integer('district_id')->unsigned()->nullable();
 		});
 	}
 

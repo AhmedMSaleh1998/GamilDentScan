@@ -41,12 +41,12 @@
                             <td>{{ $dentist->email_two }}</td>
                         </tr>
                         <tr>
-                            <td> الهاتف رقم 1</td>
-                            <td>{{ $dentist->phone_one }}</td>
+                            <td> الهاتف الشخصي</td>
+                            <td>{{ $dentist->phone_one }}<a target="_blank" href="https://wa.me/{{$dentist->phone_one}}"><button style="font-size:24px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
                         </tr>
                         <tr>
-                            <td> الهاتف رقم 2</td>
-                            <td>{{ $dentist->phone_two }}</td>
+                            <td> هاتف العيادة</td>
+                            <td>{{ $dentist->phone_two }}<a target="_blank" href="https://wa.me/{{$dentist->phone_two}}"><button style="font-size:24px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
                         </tr>
                         <tr>
                             <td> العنوان 1 بالتفصيل</td>

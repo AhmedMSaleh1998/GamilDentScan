@@ -30,7 +30,7 @@
                     <div class="col-sm-12">
                         <div class=" main-btn-00">
                             <!-- Responsive modal -->
-                            <a href="{{ route('admin.technician.create') }}" class="btn btn-default waves-effect">إضافة قني جديد</a>
+                            <a href="{{ route('admin.technician.create') }}" class="btn btn-default waves-effect">إضافة فني جديد</a>
                         </div>
                     </div>
                 </div>
@@ -53,9 +53,9 @@
                             @foreach ($technicians as $technician)
                                 <tr>
                                     <td>{{ $technician->name }}</td>
-                                    <td>{{ $technician->phone}}</td>
+                                    <td>{{ $technician->phone}}<a target="_blank" href="https://wa.me/{{$technician->phone}}"><button style="font-size:24px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
                                     <td>{{ $technician->email }}</td>
-                                    
+
                                     <td class="actions">
                                         <a href="{{ route('admin.technician.show', $technician->id) }}"
                                             class="btn btn-info waves-effect" title="تفاصيل الطبيب">تفاصيل الفني</a>

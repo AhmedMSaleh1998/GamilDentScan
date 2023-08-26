@@ -8,13 +8,18 @@ class CreateForeignKeys extends Migration {
 
 	public function up()
 	{
+		Schema::table('dentists', function(Blueprint $table) {
+			$table->foreign('district_id')->references('id')->on('districts')
+						->onDelete('restrict')
+						->onUpdate('restrict');
+		});
 		Schema::table('scans', function(Blueprint $table) {
 			$table->foreign('patient_id')->references('id')->on('patients')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
 		Schema::table('scans', function(Blueprint $table) {
-			$table->foreign('scan_id')->references('id')->on('scans_types')
+			$table->foreign('scan_type_id')->references('id')->on('scans_types')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
@@ -47,11 +52,14 @@ class CreateForeignKeys extends Migration {
 
 	public function down()
 	{
+		Schema::table('dentists', function(Blueprint $table) {
+			$table->dropForeign('dentists_district_id_foreign');
+		});
 		Schema::table('scans', function(Blueprint $table) {
 			$table->dropForeign('scans_patient_id_foreign');
 		});
 		Schema::table('scans', function(Blueprint $table) {
-			$table->dropForeign('scans_scan_id_foreign');
+			$table->dropForeign('scans_scan_type_id_foreign');
 		});
 		Schema::table('scans', function(Blueprint $table) {
 			$table->dropForeign('scans_dentist_id_foreign');

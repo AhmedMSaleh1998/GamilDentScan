@@ -54,8 +54,8 @@
                                 <tr>
                                     <td>{{ $patient->name }}</td>
                                     <td>{{ $patient->age()}}</td>
-                                    <td>{{ $patient->phone_one}}<a target="_blank" href="https://wa.me/+2{{$patient->phone_one}}"><button style="font-size:24px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
-                                    
+                                    <td>{{ $patient->phone_one}}<a target="_blank" href="https://wa.me/{{$patient->phone_one}}"><button style="font-size:24px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
+
                                     <td class="actions">
                                         <a href="{{ route('admin.patient.show', $patient->id) }}"
                                             class="btn btn-info waves-effect" title="تفاصيل الحالة">تفاصيل الحالة</a>

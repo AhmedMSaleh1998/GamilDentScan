@@ -12,9 +12,8 @@ class CreateScansTable extends Migration {
 			$table->timestamps();
 			$table->softDeletes();
 			$table->integer('patient_id')->unsigned();
-			$table->integer('scan_id')->unsigned();
+			$table->integer('scan_type_id')->unsigned();
 			$table->string('current_price');
-			$table->string('current_discount', 25)->nullable();
 			$table->tinyInteger('is_recieved')->default('0');
 			$table->integer('dentist_id')->unsigned()->nullable();
 			$table->integer('reciptionist_id')->unsigned();
@@ -34,6 +33,7 @@ class CreateScansTable extends Migration {
 			$table->datetime('recieved_time')->nullable();
 			$table->string('reciever_name', 255)->nullable();
 			$table->tinyInteger('status')->default('0');
+			$table->string('discount_reason')->nullable();
 		});
 	}
 

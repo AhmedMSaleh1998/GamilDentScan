@@ -6,6 +6,7 @@ use App\Http\Requests\Scan\AddScanRequest;
 use App\Http\Requests\Scan\EditScanRequest;
 use App\Models\Dentist;
 use App\Models\Scan;
+use App\Models\Technician;
 use App\Models\ScanType;
 use Illuminate\Http\Request;
 
@@ -17,23 +18,24 @@ class ScanController extends Controller
     public function index($id)
     {
         $scans = Scan::where('patient_id', $id)->get();
-        return view('admin.patientScans.index', compact('scans'));
+        return view('admin.patientScans.index', compact('scans' , 'id'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($id)
     {
         $scanTypes = ScanType::all();
         $dentists  = Dentist::all();
-        return view('admin.patientScans.create', compact('scanTypes', 'dentists'));
+        $technicians =Technician::all();
+        return view('admin.patientScans.create', compact('dentists' , 'scanTypes' , 'technicians' , 'id'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AddScanRequest $request)
+    public function store(AddScanRequest $request , $id)
     {
         //
     }

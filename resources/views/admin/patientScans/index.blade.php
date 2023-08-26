@@ -30,7 +30,7 @@
                     <div class="col-sm-12">
                         <div class=" main-btn-00">
                             <!-- Responsive modal -->
-                            <a href="{{ route('admin.scan.create') }}" class="btn btn-default waves-effect">إضافة فحص جديد</a>
+                            <a href="{{ route('admin.patient.scans.create' , $id) }}" class="btn btn-default waves-effect">إضافة فحص جديد</a>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                             @foreach ($scans as $scan)
                                 <tr>
                                     <td>{{ $scan->name }}</td>
-                                    
+
                                     <td class="actions">
                                         <a href="{{ route('admin.scan.show', $scan->id) }}"
                                             class="btn btn-info waves-effect" title="تفاصيل الفحص">تفاصيل الفحص</a>

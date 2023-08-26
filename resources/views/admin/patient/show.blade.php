@@ -38,15 +38,15 @@
                         </tr>
                         <tr>
                             <td> الهاتف رقم 1</td>
-                            <td>{{ $patient->phone_one }}</td>
+                            <td>{{ $patient->phone_one }}<a target="_blank" href="https://wa.me/+2{{$patient->phone_one}}"><button style="font-size:24px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
                         </tr>
                         <tr>
                             <td> الهاتف رقم 2</td>
-                            <td>{{ $patient->phone_two }}<a target="_blank" href="https://wa.me/+2{{$patient->phone_one}}"><button style="font-size:24px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
+                            <td>{{ $patient->phone_two }}<a target="_blank" href="https://wa.me/+2{{$patient->phone_two}}"><button style="font-size:24px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
                         </tr>
                         <tr>
                             <td> العنوان بالتفصيل</td>
-                            <td>{{$patient->address}}<a target="_blank" href="https://wa.me/+2{{$patient->phone_two}}"><button style="font-size:24px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
+                            <td>{{$patient->address}}</td>
                         </tr>
                         {{-- <tr>
                             <td>صور المشروع</td>
