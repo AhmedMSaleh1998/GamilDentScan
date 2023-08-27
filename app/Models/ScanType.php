@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ScanType extends Model 
+class ScanType extends Model
 {
 
-    protected $table = 'scans_types';
+    protected $table = 'scan_types';
     public $timestamps = true;
 
     use SoftDeletes;

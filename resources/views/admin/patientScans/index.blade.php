@@ -16,7 +16,7 @@
                 @elseif(Session::has('danger'))
                     <div class="alert alert-danger">{{ Session::get('danger') }}</div>
                 @endif
-                <h4 class="page-title">الفحوصات الخاصة بالمريض </h4>
+                <h4 class="page-title">الفحوصات الخاصة بالمريض</h4>
             </div>
 
         </div>
@@ -53,17 +53,20 @@
                             {{-- @if (isset($districts)) --}}
                             @foreach ($scans as $scan)
                                 <tr>
-                                    <td>{{ $scan->name }}</td>
+                                    <td>{{ $scan->scanType->name }}</td>
+                                    <td>{{ $scan->dentist->name }}</td>
+                                    <td>{{ $scan->scanType->price }}</td>
+                                    <td>{{ $scan->total_price_after_discount}}</td>
 
                                     <td class="actions">
-                                        <a href="{{ route('admin.scan.show', $scan->id) }}"
+                                        <a href="{{ route('admin.patient.scans.show', $scan->id) }}"
                                             class="btn btn-info waves-effect" title="تفاصيل الفحص">تفاصيل الفحص</a>
-                                        <a href="{{ route('admin.scan.edit', $scan->id) }}"
+                                        <a href="{{ route('admin.patient.scans.edit', $scan->id) }}"
                                             class="btn btn-success waves-effect" title="تعديل">تعديل</a>
-                                            <a href="{{ route('admin.scan.edit', $scan->id) }}"
-                                                class="btn btn-success waves-effect" title="طباعة">طباعة</a>
                                         <button type="button" class="btn btn-danger waves-effect" data-toggle="modal"
                                             data-target="#{{ $scan->id }}delete" title="حذف">حذف </button>
+                                        <a href="#"
+                                                class="btn btn-dark waves-effect" title="طباعة">طباعة</a>
                                     </td>
                                 </tr>
 
@@ -82,7 +85,7 @@
                                                 <h4 style="text-align:center;">تأكيد الحذف</h4>
                                             </div>
                                             <div class="modal-footer" style="text-align:center">
-                                                <form action="{{ route('admin.scan.destroy', $scan->id) }}"
+                                                <form action="{{ route('admin.patient.scans.delete', $scan->id) }}"
                                                     method="post">
                                                     @csrf
                                                     <input name="_method" type="hidden" value="DELETE">

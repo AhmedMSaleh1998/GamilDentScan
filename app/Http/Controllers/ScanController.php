@@ -37,7 +37,23 @@ class ScanController extends Controller
      */
     public function store(AddScanRequest $request , $id)
     {
-        //
+        $newScan = $request->validated();
+        $scan = new Scan;
+        $scan->patient_id                      = $newScan['patient_id'];
+        $scan->scan_type_id                    = $newScan['scan_type_id'];
+        $scan->dentist_id                      = $newScan['dentist_id'];
+        $scan->reciptionist_id                 = 1;
+        $scan->technician_id                   = $newScan['technician_id'];
+        $scan->total_price_after_discount      = $newScan['total_price_after_discount'];
+        $scan->paid_by_patient                 = $newScan['paid_by_patient'];
+        $scan->discount_reason                 = $newScan['discount_reason'];
+        $scanType = ScanType::find($newScan['scan_type_id']);
+        $scan->current_reciptionist_commission = $scanType->receptionist_commision;
+        $scan->current_technician_commission   = $scanType->technicain_commision;
+        $scan->current_price                   = $scanType->price;
+        $scan->save();
+
+        return redirect(route('admin.patient.scans.index', $id))->with(['success' => 'تم إضافة الفحص بنجاح']);
     }
 
     /**
@@ -67,8 +83,10 @@ class ScanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $scan = Scan::find($id);
+        $scan->delete();
+        return redirect()->back()->with(['success' => 'تم حذف الفحص بنجاح']);
     }
 }

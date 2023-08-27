@@ -27,9 +27,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             function () {
                 Route::get('patient/{id}/scans/', 'index')->name('patient.scans.index');
                 Route::get('patient/{id}/scans/create/', 'create')->name('patient.scans.create');
-                Route::get('patient/{id}/scans/store', 'store')->name('patient.scans.store');
-                Route::get('patient/{patient_id}/scans/update', 'update')->name('patient.scans.update');
-                Route::get('patient/{patient_id}/scans/delete', 'delete')->name('patient.scans.delete');
+                Route::get('scans/{scan_id}', 'show')->name('patient.scans.show');
+                Route::post('patient/{id}/scans/store', 'store')->name('patient.scans.store');
+                Route::get('patient/{id}/scans/edit', 'edit')->name('patient.scans.edit');
+                Route::put('patient/{id}/scans/update', 'update')->name('patient.scans.update');
+                Route::delete('patient/{id}/scans/delete', 'destroy')->name('patient.scans.delete');
             }
         );
         Route::resource('receptionist', 'ReceptionistController');

@@ -77,16 +77,16 @@
                     <tr>
                         <td>فني الأشعة</td>
                         <td>
-                            <select name="technician_id " id="technician_id " required class="form-control">
+                            <select name="technician_id" id="technician_id" required class="form-control">
                                 <option value="">اختر فني الأشعة</option>
                                 @foreach ($technicians as $technician )
                                 <option value={{$technician->id}}>{{$technician->name}}</option>
                                 @endforeach
                             </select>
                         </td>
-                        @if ($errors->has('technician_id '))
+                        @if ($errors->has('technician_id'))
                         <span class="alert alert-danger">
-                            <strong>{{ $errors->first('technician_id ') }}</strong>
+                            <strong>{{ $errors->first('technician_id') }}</strong>
                         </span>
                         @endif
                     </tr>
