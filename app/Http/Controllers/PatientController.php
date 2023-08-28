@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Patient\AddPatientRequest;
 use App\Http\Requests\Patient\EditPatientRequest;
 use App\Models\Patient;
+use App\Models\Scan;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -41,7 +42,8 @@ class PatientController extends Controller
     public function show($id)
     {
         $patient = Patient::find($id);
-        return view('admin.patient.show', compact('patient'))->with(['success' => 'تم عرض الطبيب بنجاح']);
+        $scans = Scan::where('patient_id', $id)->get();
+        return view('admin.patient.show', compact('patient', 'scans'))->with(['success' => 'تم عرض الطبيب بنجاح']);
     }
 
     /**

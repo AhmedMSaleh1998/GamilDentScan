@@ -10,7 +10,7 @@
                 <div class="alert alert-danger">{{ Session::get('danger') }}</div>
             @endif
             <a style="color: #fff;" href="{{route('admin.home')}}">الرئيسية</a>
-            <a style="color: #fff;" href="{{route('admin.district.index')}}">/ المرضي / </a>
+            <a style="color: #fff;" href="{{route('admin.patient.index')}}">/ المرضي / </a>
             <a style="color: #36404a;"> مشاهدة </a>
 
             <ul>
@@ -23,14 +23,42 @@
     <div class="row">
         <div class="col-12">
             <div class="card-box">
-                <h4 class="header-title m-t-0 m-b-20">{{$district->name}}</h4>
+                <h4 class="header-title m-t-0 m-b-20"></h4>
 
                 <table class="table table-bordered table-striped">
                     <tbody>
 
                         <tr>
                             <td>الاسم </td>
-                            <td>{{ $district->name }}</td>
+                            <td>{{ $scan->scanType->name }}</td>
+                        </tr>
+                        <tr>
+                            <td>الطبيب المعالج </td>
+                            <td>{{ $scan->dentist->name }}</td>
+                        </tr>
+                        <tr>
+                            <td>السعر قبل الخصم </td>
+                            <td>{{ $scan->scanType->price }}</td>
+                        </tr>
+                        <tr>
+                            <td>السعر بعد الخصم </td>
+                            <td>{{ $scan->total_price_after_discount }}</td>
+                        </tr>
+                        <tr>
+                            <td>المدفوع </td>
+                            <td>{{ $scan->paid_by_patient }}</td>
+                        </tr>
+                        <tr>
+                            <td>الباقي </td>
+                            <td>{{ $scan->total_price_after_discount-$scan->paid_by_patient }}</td>
+                        </tr>
+                        <tr>
+                            <td>الاسم </td>
+                            <td>{{ $scan->scanType->name }}</td>
+                        </tr>
+                        <tr>
+                            <td>الاسم </td>
+                            <td>{{ $scan->scanType->name }}</td>
                         </tr>
                         {{-- <tr>
                             <td>صور المشروع</td>

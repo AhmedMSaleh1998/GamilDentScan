@@ -10,7 +10,6 @@ class CreateScansTable extends Migration {
 		Schema::create('scans', function(Blueprint $table) {
 			$table->increments('id');
 			$table->timestamps();
-			$table->softDeletes();
 			$table->integer('patient_id')->unsigned();
 			$table->integer('scan_type_id')->unsigned();
 			$table->string('current_price');
@@ -21,7 +20,7 @@ class CreateScansTable extends Migration {
 			$table->string('total_price_after_discount', 255);
 			$table->string('paid_by_patient', 255);
 			$table->tinyInteger('whatsapp_sent')->default('0');
-			$table->integer('payment_method_id')->unsigned();
+			$table->integer('payment_method_id')->unsigned()->nullable();
 			$table->string('file')->nullable();
 			$table->string('dicom_file_link')->nullable();
 			$table->string('current_reciptionist_commission');

@@ -19,7 +19,7 @@ class CreateForeignKeys extends Migration {
 						->onUpdate('restrict');
 		});
 		Schema::table('scans', function(Blueprint $table) {
-			$table->foreign('scan_type_id')->references('id')->on('scans_types')
+			$table->foreign('scan_type_id')->references('id')->on('scan_types')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});

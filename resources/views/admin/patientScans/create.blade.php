@@ -77,7 +77,7 @@
                     <tr>
                         <td>فني الأشعة</td>
                         <td>
-                            <select name="technician_id " id="technician_id " required class="select2 select2-multiple select2-hidden-accessible">
+                            <select name="technician_id" id="technician_id" required class="select2 select2-multiple select2-hidden-accessible">
                                 <option value="">اختر فني الأشعة</option>
                                 @foreach ($technicians as $technician )
                                 <option value={{$technician->id}}>{{$technician->name}}</option>
