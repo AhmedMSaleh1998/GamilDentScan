@@ -45,7 +45,7 @@
                     <tr>
                         <td>نوع الفحص</td>
                         <td>
-                            <select name="scan_type_id" id="scan_type_id" required class="form-control">
+                            <select name="scan_type_id" id="scan_type_id" required class="select2 select2-multiple select2-hidden-accessible">
                                 <option value="">اختر نوع الأشعة</option>
                                 @foreach ($scanTypes as $scanType )
                                 <option value={{$scanType->id}}>{{$scanType->name}} "---" {{$scanType->price}}</option>
@@ -61,7 +61,7 @@
                     <tr>
                         <td>الطبيب المعالج</td>
                         <td>
-                            <select name="dentist_id" id="dentist_id" required class="form-control">
+                            <select name="dentist_id" id="dentist_id" required class="select2 select2-multiple select2-hidden-accessible">
                                 <option value="">اختر الطبيب المعالج</option>
                                 @foreach ($dentists as $dentist )
                                 <option value={{$dentist->id}}>{{$dentist->name}}</option>
@@ -77,7 +77,7 @@
                     <tr>
                         <td>فني الأشعة</td>
                         <td>
-                            <select name="technician_id " id="technician_id " required class="form-control">
+                            <select name="technician_id " id="technician_id " required class="select2 select2-multiple select2-hidden-accessible">
                                 <option value="">اختر فني الأشعة</option>
                                 @foreach ($technicians as $technician )
                                 <option value={{$technician->id}}>{{$technician->name}}</option>
