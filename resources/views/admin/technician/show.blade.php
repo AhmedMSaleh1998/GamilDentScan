@@ -38,7 +38,7 @@
                         </tr>
                         <tr>
                             <td>الهاتف</td>
-                            <td>{{ $technician->phone }}<a target="_blank" href="https://wa.me/{{$technician->phone}}"><button style="font-size:24px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
+                            <td>{{ $technician->phone }}<a target="_blank" href="https://wa.me/+2{{$technician->phone}}"><button style="font-size:12px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
                         </tr>
                         <tr>
                             <td>العنوان</td>
@@ -54,8 +54,6 @@
                             <td><img src="{{ asset('admin_assets/images/projects/'.$image->image) }}" class="img-responsive" width="100px" height="100px"></td>
                             @endforeach
                         </tr> --}}
-                    </tbody>
-                </table>
             </div>
         </div><!-- end col -->
     </div>

@@ -53,7 +53,7 @@
                             @foreach ($technicians as $technician)
                                 <tr>
                                     <td>{{ $technician->name }}</td>
-                                    <td>{{ $technician->phone}}<a target="_blank" href="https://wa.me/{{$technician->phone}}"><button style="font-size:24px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
+                                    <td>{{ $technician->phone}}<a target="_blank" href="https://wa.me/+2{{$technician->phone}}"><button style="font-size:12px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
                                     <td>{{ $technician->email }}</td>
 
                                     <td class="actions">

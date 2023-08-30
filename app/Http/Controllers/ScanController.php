@@ -53,7 +53,7 @@ class ScanController extends Controller
         $scan->current_price                   = $scanType->price;
         $scan->save();
 
-        return redirect(route('admin.patient.scans.index', $id))->with(['success' => 'تم إضافة الفحص بنجاح']);
+        return redirect(route('admin.patient.show', $id))->with(['success' => 'تم إضافة الفحص بنجاح']);
     }
 
     /**

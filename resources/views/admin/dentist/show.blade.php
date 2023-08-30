@@ -42,11 +42,11 @@
                         </tr>
                         <tr>
                             <td> الهاتف الشخصي</td>
-                            <td>{{ $dentist->phone_one }}<a target="_blank" href="https://wa.me/{{$dentist->phone_one}}"><button style="font-size:24px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
+                            <td>{{ $dentist->phone_one }}<a target="_blank" href="https://wa.me/+2{{$dentist->phone_one}}"><button style="font-size:12px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
                         </tr>
                         <tr>
                             <td> هاتف العيادة</td>
-                            <td>{{ $dentist->phone_two }}<a target="_blank" href="https://wa.me/{{$dentist->phone_two}}"><button style="font-size:24px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
+                            <td>{{ $dentist->phone_two }}<a target="_blank" href="https://wa.me/+2{{$dentist->phone_two}}"><button style="font-size:12px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
                         </tr>
                         <tr>
                             <td> العنوان 1 بالتفصيل</td>

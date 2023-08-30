@@ -38,7 +38,7 @@
                         </tr>
                         <tr>
                             <td>الهاتف</td>
-                            <td>{{ $receptionist->phone }}</td>
+                            <td>{{ $receptionist->phone }}<a target="_blank" href="https://wa.me/+2{{$receptionist->phone}}"><button style="font-size:12px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
                         </tr>
                         <tr>
                             <td>العنوان</td>
