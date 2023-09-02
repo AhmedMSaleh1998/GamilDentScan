@@ -105,6 +105,22 @@
                         @endif
                     </tr>
                     <tr>
+                        <td>المنطقة</td>
+                        <td>
+                            <select name="district_id" id="district_id" required class="select2 select2-multiple select2-hidden-accessible">
+                                <option value="">اختر المنطقة</option>
+                                @foreach ($districts as $district )
+                                <option value={{$district->id}}>{{$district->name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        @if ($errors->has('scan_type_id'))
+                        <span class="alert alert-danger">
+                            <strong>{{ $errors->first('scan_type_id') }}</strong>
+                        </span>
+                        @endif
+                    </tr>
+                    <tr>
                         <td style="width:25%"></td>
                         <td><button type="submit" class="btn btn-default waves-effect waves-light form-control">حفظ</button></td>
                     </tr>

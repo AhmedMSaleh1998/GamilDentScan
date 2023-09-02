@@ -49,6 +49,10 @@
                             <td>{{ $dentist->phone_two }}<a target="_blank" href="https://wa.me/+2{{$dentist->phone_two}}"><button style="font-size:12px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
                         </tr>
                         <tr>
+                            <td>المنطقة</td>
+                            <td>{{$dentist->district->name}}</td>
+                        </tr>
+                        <tr>
                             <td> العنوان 1 بالتفصيل</td>
                             <td>{{$dentist->address_one}}</td>
                         </tr>

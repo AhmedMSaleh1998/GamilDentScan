@@ -1,16 +1,15 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
-class Patient extends Model 
+class Patient extends Model
 {
 
     protected $table = 'patients';
     public $timestamps = true;
-    protected $fillable = array('name', 'birth_date', 'address', 'phone_one', 'phone_two', 'email');
+    protected $fillable = array('name', 'birth_date', 'address', 'phone_one', 'phone_two', 'email', 'request_photo');
 
     public function age()
     {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Dentist\AddDentistRequest;
 use App\Http\Requests\Dentist\EditDentistRequest;
 use App\Models\Dentist;
+use App\Models\District;
 use Illuminate\Http\Request;
 class DentistController extends Controller
 {
@@ -22,7 +23,8 @@ class DentistController extends Controller
      */
     public function create()
     {
-        return view('admin.dentist.create');
+        $districts = District::all();
+        return view('admin.dentist.create',compact('districts'));
     }
 
     /**
@@ -48,8 +50,9 @@ class DentistController extends Controller
      */
     public function edit($id)
     {
+        $districts = District::all();
         $dentist = Dentist::find($id);
-        return view('admin.dentist.edit', compact('dentist'));
+        return view('admin.dentist.edit', compact('dentist' , 'districts'));
     }
 
     /**

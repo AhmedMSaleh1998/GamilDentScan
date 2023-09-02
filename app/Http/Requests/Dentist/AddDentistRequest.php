@@ -22,13 +22,14 @@ class AddDentistRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'          => 'required',
-            'address_one' => 'nullable',
+            'name'              => 'required',
+            'address_one'       => 'nullable',
             'address_two'       => 'nullable',
-            'phone_one'     => 'nullable',
-            'phone_two'     => 'nullable',
+            'phone_one'         => 'nullable',
+            'phone_two'         => 'nullable',
             'email_one'         => 'nullable',
             'email_two'         => 'nullable',
+            'district_id'       => 'nullable',
         ];
     }
 }

@@ -94,6 +94,22 @@
                             @endif
                         </tr>
                         <tr>
+                            <td>المنطقة</td>
+                            <td>
+                                <select name="district_id" id="district_id" required value="{{ old('district_id') ? old('district_id') : $dentist->district_id }}" class="select2 select2-multiple select2-hidden-accessible">
+                                    <option value="">اختر المنطقة</option>
+                                    @foreach ($districts as $district )
+                                    <option value={{$district->id}}>{{$district->name}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            @if ($errors->has('scan_type_id'))
+                            <span class="alert alert-danger">
+                                <strong>{{ $errors->first('scan_type_id') }}</strong>
+                            </span>
+                            @endif
+                        </tr>
+                        <tr>
                             <td>رقم الهاتف 1</td>
                             <td><input type="phone" class="form-control" name="phone_one"
                                     value="{{ old('phone_one') ? old('phone_one') : $dentist->phone_one }}"></td>

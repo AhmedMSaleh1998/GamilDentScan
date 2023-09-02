@@ -59,9 +59,25 @@
                         @endif
                     </tr>
                     <tr>
+                        <td>اسم المنظمة</td>
+                        <td>
+                            <select name="organization_id" id="organization_id" class="select2 select2-multiple select2-hidden-accessible">
+                                <option value="">اختر المنظمة</option>
+                                @foreach ($organizations as $organization )
+                                <option value={{$organization->id}}>{{$organization->name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        @if ($errors->has('organization_id'))
+                        <span class="alert alert-danger">
+                            <strong>{{ $errors->first('organization_id') }}</strong>
+                        </span>
+                        @endif
+                    </tr>
+                    <tr>
                         <td>الطبيب المعالج</td>
                         <td>
-                            <select name="dentist_id" id="dentist_id" required class="select2 select2-multiple select2-hidden-accessible">
+                            <select name="dentist_id" id="dentist_id" class="select2 select2-multiple select2-hidden-accessible">
                                 <option value="">اختر الطبيب المعالج</option>
                                 @foreach ($dentists as $dentist )
                                 <option value={{$dentist->id}}>{{$dentist->name}}</option>

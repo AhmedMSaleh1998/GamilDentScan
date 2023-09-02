@@ -8,6 +8,7 @@ use App\Models\Dentist;
 use App\Models\Scan;
 use App\Models\Technician;
 use App\Models\ScanType;
+use App\Models\Organization;
 use Illuminate\Http\Request;
 
 class ScanController extends Controller
@@ -29,7 +30,8 @@ class ScanController extends Controller
         $scanTypes = ScanType::all();
         $dentists  = Dentist::all();
         $technicians = Technician::all();
-        return view('admin.patientScans.create', compact('dentists', 'scanTypes', 'technicians', 'id'));
+        $organizations = Organization::all();
+        return view('admin.patientScans.create', compact('dentists', 'scanTypes', 'technicians', 'organizations', 'id'));
     }
 
     /**
@@ -47,6 +49,7 @@ class ScanController extends Controller
         $scan->total_price_after_discount      = $newScan['total_price_after_discount'];
         $scan->paid_by_patient                 = $newScan['paid_by_patient'];
         $scan->discount_reason                 = $newScan['discount_reason'];
+        $scan->organization_id                 = $newScan['organization_id'];
         $scanType = ScanType::find($newScan['scan_type_id']);
         $scan->current_reciptionist_commission = $scanType->receptionist_commision;
         $scan->current_technician_commission   = $scanType->technicain_commision;

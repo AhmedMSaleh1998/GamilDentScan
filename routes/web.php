@@ -22,6 +22,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::resource('patient', 'PatientController');
         Route::resource('dentist', 'DentistController');
         Route::resource('scanType', 'ScanTypeController');
+        Route::resource('organization', 'OrganizationController');
         /* Route::resource('scan', 'ScanController'); */
         Route::controller(ScanController::class)->group(
             function () {

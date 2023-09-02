@@ -16,6 +16,7 @@ class CreatePatientsTable extends Migration {
 			$table->string('phone_one')->nullable();
 			$table->string('phone_two')->nullable();
 			$table->string('email')->nullable();
+			$table->string('request_photo')->nullable();
 		});
 	}
 

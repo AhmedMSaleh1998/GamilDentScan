@@ -16,6 +16,7 @@ class CreateScanTypesTable extends Migration {
 			$table->integer('receptionist_commision');
 			$table->integer('technicain_commision');
 			$table->string('base_recieving_time');
+			$table->integer('organization_id')->unsigned()->nullable();
 		});
 	}
 

@@ -22,7 +22,7 @@
         <div class="alert alert-danger">{{ Session::get('danger') }}</div>
         @endif
         <a style="color: #fff;" href="{{ route('admin.home') }}">الرئيسية</a>
-        <a style="color: #fff;" href="{{ route('admin.scanType.index') }}">/ انواع الفحوصات / </a>
+        <a style="color: #fff;" href="{{ route('admin.organization.index') }}">/ المنظمات / </a>
         <a style="color: #36404a;"> إضافة </a>
 
         <ul>
@@ -35,54 +35,18 @@
 <div class="row">
     <div class="col-12">
         <div class="card-box">
-            <h4 class="header-title m-t-0 m-b-20">اضافه نوع فحص جديد</h4>
-        <form action="{{route('admin.scanType.store')}}" method="post">
+            <h4 class="header-title m-t-0 m-b-20">اضافه منظمة جديد</h4>
+        <form action="{{route('admin.organization.store')}}" method="post">
             @csrf
             <table class="table table-bordered table-striped">
                 <tbody>
 
                     <tr>
-                        <td>نوع الفحص</td>
+                        <td>اسم المنظمة</td>
                         <td><input type="text" class="form-control" name="name" required value="{{ old('name') }}"></td>
                         @if ($errors->has('name'))
                         <span class="alert alert-danger">
                             <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                        @endif
-                    </tr>
-                    <tr>
-                        <td>السعر</td>
-                        <td><input type="text" class="form-control" name="price"  value="{{ old('price') }}"></td>
-                        @if ($errors->has('price'))
-                        <span class="alert alert-danger">
-                            <strong>{{ $errors->first('price') }}</strong>
-                        </span>
-                        @endif
-                    </tr>
-                    <tr>
-                        <td>نسبة الريسبشن</td>
-                        <td><input type="number" class="form-control" name="receptionist_commision"  value="{{ old('receptionist_commision') }}"></td>
-                        @if ($errors->has('receptionist_commision'))
-                        <span class="alert alert-danger">
-                            <strong>{{ $errors->first('receptionist_commision') }}</strong>
-                        </span>
-                        @endif
-                    </tr>
-                    <tr>
-                        <td>نسبة فني الأشعة</td>
-                        <td><input type="number" class="form-control" name="technicain_commision"  value="{{ old('technicain_commision') }}"></td>
-                        @if ($errors->has('technicain_commision'))
-                        <span class="alert alert-danger">
-                            <strong>{{ $errors->first('technicain_commision') }}</strong>
-                        </span>
-                        @endif
-                    </tr>
-                    <tr>
-                        <td>الوقت المتوقع للأستلام</td>
-                        <td><input type="text" class="form-control" name="base_recieving_time"  value="{{ old('base_recieving_time') }}"></td>
-                        @if ($errors->has('base_recieving_time'))
-                        <span class="alert alert-danger">
-                            <strong>{{ $errors->first('base_recieving_time') }}</strong>
                         </span>
                         @endif
                     </tr>

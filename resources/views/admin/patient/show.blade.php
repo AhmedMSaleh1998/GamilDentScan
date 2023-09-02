@@ -4,13 +4,12 @@
     <!-- Page-Title -->
     <style>
         @media print{
-            @page{
-                size: 4inches 2inches;
+            #GFG{
+                size: 2inches 1inches;
                 margin: 0;
             }
-            #myfrm{
-                size: 4inches 2inches;
-                margin: 0;
+            #button{
+                visable:none;
             }
         }
     </style>
@@ -99,26 +98,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-            
+
                                 @foreach($scans as $scan)
                                 <tr>
                                     <td>
-                                        {{$scan->scanType->name}} 
+                                        {{$scan->scanType->name}}
                                     </td>
                                     <td>
-                                        {{$scan->dentist->name}} 
+                                        {{$scan->dentist->name}}
                                     </td>
                                     <td>
                                         {{$scan->scanType->price}}
                                     </td>
                                     <td>
-                                        {{$scan->total_price_after_discount}} 
+                                        {{$scan->total_price_after_discount}}
                                     </td>
                                     <td>
-                                        {{$scan->paid_by_patient}} 
+                                        {{$scan->paid_by_patient}}
                                     </td>
                                     <td>
-                                        {{$scan->total_price_after_discount - $scan->paid_by_patient}} 
+                                        {{$scan->total_price_after_discount - $scan->paid_by_patient}}
                                     </td>
                                     <td>
                                         التحكم
@@ -126,9 +125,9 @@
                                         <td class="actions">
                                             <a href="{{ route('admin.patient.scans.show', $scan->id) }}"
                                                 class="btn btn-info waves-effect" title="تفاصيل الفحص">تفاصيل الفحص</a>
-                                            <a href="{{ route('admin.patient.scans.edit', $scan->id) }}"
+                                            <a href="{{ route('admin.patient.scans.edit', $scan->id) }}" target="_blank"
                                                 class="btn btn-success waves-effect" title="تعديل">تعديل</a>
-                                                <input class="btn btn-dark" onclick="myPrint('myfrm')" value="print">
+                                                <input class="btn btn-dark" onclick=printDiv() value="print">
                                             <button type="button" class="btn btn-danger waves-effect" data-toggle="modal"
                                                 data-target="#{{ $scan->id }}delete" title="حذف">حذف </button>
                                         </td>
@@ -143,7 +142,7 @@
             </div>
         </div><!-- end col -->
         @foreach($scans as $scan)
-        <div id="myfrm" class="text-white">
+       {{--  <div id="myfrm" class="text-white">
             <fieldset >
                 <table>
                 <tr>
@@ -159,7 +158,26 @@
                     <th class="text-right">السن</th>
                 </tr>
                 </table>
-            </fieldset></div>
+            </fieldset></div> --}}
+            <center>
+                <div id="GFG" style="text-direction:rtl">
+
+                    <table border="1px" width="455 px" height="150 px" class="text-white">
+                        <tr>
+                            <td>{{$patient->name}}</td>
+                            <td>الأسم</td>
+                        </tr>
+                        <tr>
+                            <td>{{$scan->scanType->name}}</td>
+                            <td>الفحص</td>
+                        </tr>
+                        <tr>
+                            <td>{{$scan->created_at}}</td>
+                            <td>التاريخ</td>
+                        </tr>
+                    </table>
+                </div>
+            </center>
         @endforeach
     </div>
     <script>
@@ -172,14 +190,18 @@
         printWindow.print();
         printWindow.close();
         } */
-         function myPrint(myfrm) {
+        /*  function myPrint(myfrm) {
             var printdata = document.getElementById(myfrm);
             newwin = window.open("");
-            newwin.innerHTML = "<span style='font-size:40px'>John Doe</span>";
             newwin.document.write(printdata.outerHTML);
             newwin.print();
             newwin.close();
-        } 
+        } */
+       /*  function myPrint(){
+            newin = window.open();
+            newin = window.print();
+            newin.close();
+        } */
         /* var prtContent = document.getElementById("myfrm");
         var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
@@ -187,5 +209,17 @@
         WinPrint.focus();
         WinPrint.print();
         WinPrint.close(); */
+        function printDiv() {
+            var divContents = document.getElementById("GFG").innerHTML;
+            var a = window.open('', '', 'height=800, width=800');
+            a.document.write('<html>');
+            a.document.write('<body> <br>');
+            a.document.write(divContents);
+            a.document.write('</body></html>');
+            a.document.close();
+            a.print();
+            self.close();
+        }
+    </script>
     </script>
 @endsection

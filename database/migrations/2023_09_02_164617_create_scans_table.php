@@ -33,6 +33,7 @@ class CreateScansTable extends Migration {
 			$table->string('reciever_name', 255)->nullable();
 			$table->tinyInteger('status')->default('0');
 			$table->string('discount_reason')->nullable();
+			$table->integer('organization_id')->unsigned()->nullable();
 		});
 	}
 

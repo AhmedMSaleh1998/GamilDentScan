@@ -62,7 +62,7 @@
                     <a href="{{ route('admin.home') }}" class="logo" dir="rtl">
                         <i class="icon-c-logo"></i>
                         <span>
-                                 جميل دنت سكان   
+                                 جميل دنت سكان
                         </span>
                     </a>
 
@@ -106,7 +106,7 @@
 
                             <div class="dropdown-item noti-title">
 
-                                
+
 
                             </div>
 
@@ -219,6 +219,8 @@
                                     class="ion-ios7-information-outline"></i> <span> أنواع الأشعة </span></a>
                         <li><a href="{{route('admin.district.index')}}" class="waves-effect"><i
                                     class="ion-ios7-information-outline"></i> <span> المناطق </span></a></li>
+                        <li><a href="{{route('admin.organization.index')}}" class="waves-effect"><i
+                                        class="ion-ios7-information-outline"></i> <span> المنظمات </span></a></li>
                         <li><a href="#" class="waves-effect"><i
                                         class="ion-ios7-information-outline"></i> <span> جميع الفحوصات </span></a></li>
                         <li class="has_sub">

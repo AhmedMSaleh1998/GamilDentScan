@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Dentist;
+namespace App\Http\Requests\Organization;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditDentistRequest extends FormRequest
+class AddOrganizationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +22,7 @@ class EditDentistRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'          => 'required',
-            'address_one' => 'nullable',
-            'address_two'       => 'nullable',
-            'phone_one'     => 'nullable',
-            'phone_two'     => 'nullable',
-            'email_one'         => 'nullable',
-            'email_two'         => 'nullable',
-            'district_id'       => 'nullable',
+            'name' => 'required',
         ];
     }
 }
