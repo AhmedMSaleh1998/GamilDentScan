@@ -33,8 +33,16 @@
                             <td>{{ $scanType->name }}</td>
                         </tr>
                         <tr>
-                            <td>الاسم </td>
-                            <td>{{ $scanType->price }}</td>
+                            <td>سعر التقرير </td>
+                            <td>{{ $scanType->report_price }}</td>
+                        </tr>
+                        <tr>
+                            <td>سعر الواتساب </td>
+                            <td>{{ $scanType->whatsapp_price }}</td>
+                        </tr>
+                        <tr>
+                            <td>سعر dvd </td>
+                            <td>{{ $scanType->dvd_price }}</td>
                         </tr>
                         <tr>
                             <td>نسبة الريسبشن </td>

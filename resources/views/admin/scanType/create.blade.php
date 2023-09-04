@@ -51,11 +51,29 @@
                         @endif
                     </tr>
                     <tr>
-                        <td>السعر</td>
-                        <td><input type="text" class="form-control" name="price"  value="{{ old('price') }}"></td>
-                        @if ($errors->has('price'))
+                        <td>سعر الواتساب</td>
+                        <td><input type="number" class="form-control" name="whatsapp_price"  value="{{ old('whatsapp_price') }}"></td>
+                        @if ($errors->has('whatsapp_price'))
                         <span class="alert alert-danger">
-                            <strong>{{ $errors->first('price') }}</strong>
+                            <strong>{{ $errors->first('whatsapp_price') }}</strong>
+                        </span>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td>سعر dvd</td>
+                        <td><input type="number" class="form-control" name="dvd_price"  value="{{ old('dvd_price') }}"></td>
+                        @if ($errors->has('dvd_price'))
+                        <span class="alert alert-danger">
+                            <strong>{{ $errors->first('dvd_price') }}</strong>
+                        </span>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td>سعر التقرير</td>
+                        <td><input type="number" class="form-control" name="report_price"  value="{{ old('report_price') }}"></td>
+                        @if ($errors->has('report_price'))
+                        <span class="alert alert-danger">
+                            <strong>{{ $errors->first('report_price') }}</strong>
                         </span>
                         @endif
                     </tr>

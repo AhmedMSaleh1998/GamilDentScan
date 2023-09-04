@@ -12,11 +12,13 @@ class CreateScanTypesTable extends Migration {
 			$table->timestamps();
 			$table->softDeletes();
 			$table->string('name', 50);
-			$table->string('price');
 			$table->integer('receptionist_commision');
 			$table->integer('technicain_commision');
 			$table->string('base_recieving_time');
 			$table->integer('organization_id')->unsigned()->nullable();
+			$table->string('whatsapp_price')->nullable();
+			$table->string('dvd_price')->nullable();
+			$table->string('report_price')->nullable();
 		});
 	}
 

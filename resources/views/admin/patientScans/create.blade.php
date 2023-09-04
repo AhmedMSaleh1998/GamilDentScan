@@ -48,13 +48,29 @@
                             <select name="scan_type_id" id="scan_type_id" required class="select2 select2-multiple select2-hidden-accessible">
                                 <option value="">اختر نوع الأشعة</option>
                                 @foreach ($scanTypes as $scanType )
-                                <option value={{$scanType->id}}>{{$scanType->name}} "---" {{$scanType->price}}</option>
+                                <option value={{$scanType->id}}>{{$scanType->name}}-------report--{{$scanType->report_price}}||whatsapp--{{$scanType->whatsapp_price}}||dvd--{{$scanType->dvd_price}}</option>
                                 @endforeach
                             </select>
                         </td>
                         @if ($errors->has('scan_type_id'))
                         <span class="alert alert-danger">
                             <strong>{{ $errors->first('scan_type_id') }}</strong>
+                        </span>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td>اختر المطلوب</td>
+                        <td>
+                            <select name="status" id="status" required class="select2 select2-multiple select2-hidden-accessible">
+                                <option value="">اختر المطلوب </option>
+                                <option value="1">whatsapp</option>
+                                <option value="2">dvd</option>
+                                <option value="3">report</option>
+                            </select>
+                        </td>
+                        @if ($errors->has('status'))
+                        <span class="alert alert-danger">
+                            <strong>{{ $errors->first('status') }}</strong>
                         </span>
                         @endif
                     </tr>

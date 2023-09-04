@@ -43,7 +43,7 @@
                         <thead>
                             <tr>
                                 <th data-field="اسم الطبيب" data-align="center">نوع الفحص</th>
-                                <th data-field="السعر" data-align="center">السعر</th>
+                                <th data-field="السعر" data-align="center">سعر التقرير</th>
                                 <th data-field="الوقت المتوقع للأستلام" data-align="center">الوقت المتوقع للأستلام</th>
                                 <th data-field="التحكم" data-align="center">التحكم</th>
                             </tr>
@@ -53,9 +53,9 @@
                             @foreach ($scanTypes as $scanType)
                                 <tr>
                                     <td>{{ $scanType->name }}</td>
-                                    <td>{{ $scanType->price}}</td>
+                                    <td>{{ $scanType->report_price}}</td>
                                     <td>{{ $scanType->base_recieving_time }}</td>
-                                    
+
                                     <td class="actions">
                                         <a href="{{ route('admin.scanType.show', $scanType->id) }}"
                                             class="btn btn-info waves-effect" title="تفاصيل الفحص">تفاصيل الفحص</a>

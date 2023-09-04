@@ -1,11 +1,11 @@
 <?php
 
-namespace App/models;
+namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class District extends Model 
+class District extends Model
 {
 
     protected $table = 'districts';
@@ -15,5 +15,9 @@ class District extends Model
 
     protected $dates = ['deleted_at'];
     protected $fillable = array('name', 'status');
+
+    public function dentists(){
+        $this->hasMany('App\Models\Dentist');
+    }
 
 }

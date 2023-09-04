@@ -24,7 +24,7 @@ class AddScanRequest extends FormRequest
         return [
             'patient_id'                         => 'required|exists:patients,id',
             'scan_type_id'                       => 'required|exists:scan_types,id',
-            'dentist_id'                         => 'required|exists:dentists,id',
+            'dentist_id'                         => 'nullable   |exists:dentists,id',
             'technician_id'                      => 'required|exists:technicians,id',
             'total_price_after_discount'         => 'required',
             'paid_by_patient'                    => 'required',

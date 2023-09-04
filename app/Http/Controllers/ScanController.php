@@ -49,7 +49,6 @@ class ScanController extends Controller
         $scan->total_price_after_discount      = $newScan['total_price_after_discount'];
         $scan->paid_by_patient                 = $newScan['paid_by_patient'];
         $scan->discount_reason                 = $newScan['discount_reason'];
-        $scan->organization_id                 = $newScan['organization_id'];
         $scanType = ScanType::find($newScan['scan_type_id']);
         $scan->current_reciptionist_commission = $scanType->receptionist_commision;
         $scan->current_technician_commission   = $scanType->technicain_commision;

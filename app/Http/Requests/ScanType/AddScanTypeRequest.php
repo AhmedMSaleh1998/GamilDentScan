@@ -23,10 +23,12 @@ class AddScanTypeRequest extends FormRequest
     {
         return [
             'name'                   => 'required',
-            'price'                  => 'required',
             'receptionist_commision' => 'required',
             'technicain_commision'   => 'required',
             'base_recieving_time'    => 'required',
+            'whatsapp_price'    => 'required',
+            'dvd_price'    => 'required',
+            'report_price'    => 'required',
         ];
     }
 }
