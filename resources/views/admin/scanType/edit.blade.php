@@ -55,7 +55,7 @@
                         </tr>
                         <tr>
                             <td>سعر الواتساب</td>
-                            <td><input type="number" class="form-control" name="whatsapp_price"  value="{{ old('whatsapp_price') }}"></td>
+                            <td><input type="number" class="form-control" name="whatsapp_price"  value="{{ old('whatsapp_price') ? old('whatsapp_price') : $scanType->whatsapp_price }}"></td>
                             @if ($errors->has('whatsapp_price'))
                             <span class="alert alert-danger">
                                 <strong>{{ $errors->first('whatsapp_price') }}</strong>
@@ -64,7 +64,7 @@
                         </tr>
                         <tr>
                             <td>سعر dvd</td>
-                            <td><input type="number" class="form-control" name="dvd_price"  value="{{ old('dvd_price') }}"></td>
+                            <td><input type="number" class="form-control" name="dvd_price"  value="{{ old('dvd_price') ? old('dvd_price') : $scanType->dvd_price }}"></td>
                             @if ($errors->has('dvd_price'))
                             <span class="alert alert-danger">
                                 <strong>{{ $errors->first('dvd_price') }}</strong>
@@ -73,7 +73,7 @@
                         </tr>
                         <tr>
                             <td>سعر التقرير</td>
-                            <td><input type="number" class="form-control" name="report_price"  value="{{ old('report_price') }}"></td>
+                            <td><input type="number" class="form-control" name="report_price"  value="{{ old('report_price') ? old('report_price') : $scanType->report_price }}"></td>
                             @if ($errors->has('report_price'))
                             <span class="alert alert-danger">
                                 <strong>{{ $errors->first('report_price') }}</strong>

@@ -33,12 +33,12 @@ class ScanController extends Controller
         $organizations = Organization::all();
         return view('admin.patientScans.create', compact('dentists', 'scanTypes', 'technicians', 'organizations', 'id'));
     }
-
-    /**
-     * Store a newly created resource in storage.
+    /*
+        * Store a newly created resource in storage.
      */
     public function store(AddScanRequest $request, $id)
     {
+
         $newScan = $request->validated();
         $scan = new Scan;
         $scan->patient_id                      = $newScan['patient_id'];
@@ -49,10 +49,27 @@ class ScanController extends Controller
         $scan->total_price_after_discount      = $newScan['total_price_after_discount'];
         $scan->paid_by_patient                 = $newScan['paid_by_patient'];
         $scan->discount_reason                 = $newScan['discount_reason'];
+        $scan->status                          = $newScan['status'];
         $scanType = ScanType::find($newScan['scan_type_id']);
         $scan->current_reciptionist_commission = $scanType->receptionist_commision;
         $scan->current_technician_commission   = $scanType->technicain_commision;
-        $scan->current_price                   = $scanType->price;
+        switch ($newScan['status']) {
+            case 1:
+
+                $scan->current_price = $scanType->whatsapp_price;
+                break;
+
+            case 2:
+
+                $scan->current_price = $scanType->dvd_price;
+                break;
+
+            case 3:
+
+                $scan->current_price = $scanType->report_price;
+                break;
+        }
+        //$scan->current_price                   = $scanType->price;
         $scan->save();
 
         return redirect(route('admin.patient.show', $id))->with(['success' => 'تم إضافة الفحص بنجاح']);

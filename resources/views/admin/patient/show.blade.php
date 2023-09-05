@@ -108,6 +108,21 @@
                                         {{$scan->dentist->name}}
                                     </td>
                                     <td>
+                                        @switch ($scan->status)
+                                            @case 1
+                                
+                                                {{$scan->scanType->whatsapp_price}}
+                                                @break;
+                                
+                                            @case 2
+                                
+                                                {{$scan->scanType->dvd_price}}
+                                                @break;
+                                
+                                            @case 3
+
+                                                {{$scan->scanType->report_price}}
+                                        @endswitch
                                         {{$scan->scanType->price}}
                                     </td>
                                     <td>

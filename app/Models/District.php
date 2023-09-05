@@ -16,8 +16,8 @@ class District extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('name', 'status');
 
-    public function dentists(){
-        $this->hasMany('App\Models\Dentist');
+    public function dentists()
+    {
+        return $this->hasMany('App\Models\Dentist');
     }
-
 }
