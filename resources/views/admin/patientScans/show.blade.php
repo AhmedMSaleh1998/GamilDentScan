@@ -38,7 +38,23 @@
                         </tr>
                         <tr>
                             <td>السعر قبل الخصم </td>
-                            <td>{{ $scan->scanType->price }}</td>
+                            <td>
+                                @switch ($scan->status)
+                                @case(1)
+
+                                    {{$scan->scanType->whatsapp_price}}
+                                    @break;
+
+                                @case(2)
+
+                                    {{$scan->scanType->dvd_price}}
+                                    @break;
+
+                                @case(3)
+
+                                    {{$scan->scanType->report_price}}
+                                @endswitch
+                            </td>
                         </tr>
                         <tr>
                             <td>السعر بعد الخصم </td>
@@ -52,14 +68,24 @@
                             <td>الباقي </td>
                             <td>{{ $scan->total_price_after_discount-$scan->paid_by_patient }}</td>
                         </tr>
-                        <tr>
-                            <td>الاسم </td>
-                            <td>{{ $scan->scanType->name }}</td>
-                        </tr>
-                        <tr>
-                            <td>الاسم </td>
-                            <td>{{ $scan->scanType->name }}</td>
-                        </tr>
+                        <div id="GFG">
+
+                            <table border="1px" width="455 px" height="150 px" class="text-dark">
+                                <tr>
+                                    <td>{{$scan->patient->name}}</td>
+                                    <td>الأسم</td>
+                                </tr>
+                                <tr>
+                                    <td>{{$scan->scanType->name}}</td>
+                                    <td>الفحص</td>
+                                </tr>
+                                <tr>
+                                    <td>{{$scan->created_at}}</td>
+                                    <td>التاريخ</td>
+                                </tr>
+                            </table>
+                            <input class="btn btn-dark" onclick=printDiv() value="print">
+                        </div>
                         {{-- <tr>
                             <td>صور المشروع</td>
                             @foreach ($district->projectImages as $image)
@@ -71,5 +97,14 @@
             </div>
         </div><!-- end col -->
     </div>
+    <script>
+        function printDiv(GFG) {
+            var printdata = document.getElementById(GFG);
+            newwin = window.open("");
+            newwin.document.write(printdata.outerHTML);
+            newwin.print();
+            newwin.close()
+        }
+    </script>
 
 @endsection
