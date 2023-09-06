@@ -42,11 +42,36 @@
                 <tbody>
 
                     <tr>
+                        <td>اختر المنظمة  </td>
+                        <td>
+                            <select name="organization_id" id="organization_id" required class="select2 select2-multiple select2-hidden-accessible">
+                                <option value="">اختر المنظمة</option>
+                                @foreach ($organizations as $organization )
+                                <option value={{$organization->id}}>{{$organization->name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        @if ($errors->has('organization_id'))
+                        <span class="alert alert-danger">
+                            <strong>{{ $errors->first('organization_id') }}</strong>
+                        </span>
+                        @endif
+                    </tr>
+                    <tr>
                         <td>نوع الفحص</td>
                         <td><input type="text" class="form-control" name="name" required value="{{ old('name') }}"></td>
                         @if ($errors->has('name'))
                         <span class="alert alert-danger">
                             <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td>سعر التقرير</td>
+                        <td><input type="number" class="form-control" name="report_price"  value="{{ old('report_price') }}"></td>
+                        @if ($errors->has('report_price'))
+                        <span class="alert alert-danger">
+                            <strong>{{ $errors->first('report_price') }}</strong>
                         </span>
                         @endif
                     </tr>
@@ -65,15 +90,6 @@
                         @if ($errors->has('dvd_price'))
                         <span class="alert alert-danger">
                             <strong>{{ $errors->first('dvd_price') }}</strong>
-                        </span>
-                        @endif
-                    </tr>
-                    <tr>
-                        <td>سعر التقرير</td>
-                        <td><input type="number" class="form-control" name="report_price"  value="{{ old('report_price') }}"></td>
-                        @if ($errors->has('report_price'))
-                        <span class="alert alert-danger">
-                            <strong>{{ $errors->first('report_price') }}</strong>
                         </span>
                         @endif
                     </tr>

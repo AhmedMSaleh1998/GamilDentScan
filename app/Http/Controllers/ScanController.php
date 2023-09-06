@@ -109,4 +109,10 @@ class ScanController extends Controller
         $scan->delete();
         return redirect()->back()->with(['success' => 'تم حذف الفحص بنجاح']);
     }
+
+    public function fetchٍScanType(Request $request)
+    {
+        $data = ScanType::where("organization_id", $request->organization_id)->get(["name", "id"]);
+        return response()->json($data);
+    }
 }

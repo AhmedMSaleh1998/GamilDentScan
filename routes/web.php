@@ -43,4 +43,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::resource('district', 'DistrictController');
     });
     Route::get('/https://wa.me/{phone}?text=')->name('whatsapp');
+
+    Route::post('fetch-scanTypes', 'ScanController@fetchٍScanType')->name('fetch-scanTypes');
+
+    Route::get('/scanTypes/{organization_id}', [ScanController::class, 'getScanTypes']);
 });

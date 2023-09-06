@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ScanType\AddScanTypeRequest;
 use App\Http\Requests\ScanType\EditScanTypeRequest;
+use App\models\Organization;
 use App\Models\ScanType;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,8 @@ class ScanTypeController extends Controller
      */
     public function create()
     {
-        return view('admin.scanType.create');
+        $organizations = Organization::all();
+        return view('admin.scanType.create', compact('organizations'));
     }
 
     /**

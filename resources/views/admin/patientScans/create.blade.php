@@ -43,6 +43,36 @@
                 <tbody>
                     <input type="hidden" name="patient_id" value="{{ $id }}">
                     <tr>
+                        <td>اسم المنظمة</td>
+                        <td>
+                            <select name="organization_id" id="organization" class="select2 select2-multiple select2-hidden-accessible">
+                                <option value="">اختر المنظمة</option>
+                                @foreach ($organizations as $organization )
+                                <option value={{$organization->id}}>{{$organization->name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        @if ($errors->has('organization_id'))
+                        <span class="alert alert-danger">
+                            <strong>{{ $errors->first('organization_id') }}</strong>
+                        </span>
+                        @endif
+                    </tr>
+                    <tr>
+                        <div class="form-group">
+                            <label>
+                                نوع الفحص
+                            </label>
+                            <select name="scan_type_id" id="scan" class="form-control">
+                                @if(isset($scans))
+                                    @foreach($scans as $scan)
+                                    <option value="{{$scan->id}}">{{$scan->name}}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                    </tr>
+                    {{-- <tr>
                         <td>نوع الفحص</td>
                         <td>
                             <select name="scan_type_id" id="scan_type_id" required class="select2 select2-multiple select2-hidden-accessible">
@@ -57,7 +87,7 @@
                             <strong>{{ $errors->first('scan_type_id') }}</strong>
                         </span>
                         @endif
-                    </tr>
+                    </tr> --}}
                     <tr>
                         <td>اختر المطلوب</td>
                         <td>
@@ -71,22 +101,6 @@
                         @if ($errors->has('status'))
                         <span class="alert alert-danger">
                             <strong>{{ $errors->first('status') }}</strong>
-                        </span>
-                        @endif
-                    </tr>
-                    <tr>
-                        <td>اسم المنظمة</td>
-                        <td>
-                            <select name="organization_id" id="organization_id" class="select2 select2-multiple select2-hidden-accessible">
-                                <option value="">اختر المنظمة</option>
-                                @foreach ($organizations as $organization )
-                                <option value={{$organization->id}}>{{$organization->name}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        @if ($errors->has('organization_id'))
-                        <span class="alert alert-danger">
-                            <strong>{{ $errors->first('organization_id') }}</strong>
                         </span>
                         @endif
                     </tr>
@@ -166,18 +180,30 @@
         </div>
     </div><!-- end col -->
 </div>
-@endsection
-@section('scripts')
 <script>
-    $('document').ready(function() {
-        $('.discount').css('display', 'none');
-        $(".isDiscount").change(function() {
-            if (this.checked) {
-                $('.discount').css('display', 'table-row');
-            } else {
-                $('.discount').css('display', 'none');
-            }
+    $(document).ready(function() {
+        $('#organization').on('change', function() {
+            var organization = this.value;
+            $("#scan").html('');
+            $.ajax({
+                url: "{{url('admin/fetch-scanTypes')}}",
+                type: "POST",
+                data: {
+                    organization_id: organization,
+                    _token: '{{csrf_token()}}'
+                },
+                dataType: 'json',
+                success: function(res) {
+                    $('#scan').html('<option value="">برجاء اختيار الدولة اولاً حتي تظهر المحافظات التابعة لها</option>');
+                    $.each(res.scans, function(key, value) {
+                        $("#scan").append('<option value="' + value
+                            .id + '">' + value.name + '</option>');
+                    });
+                }
+            });
         });
     });
 </script>
+<script src="{{ mix('js/app.js') }}"></script>
 @endsection
+

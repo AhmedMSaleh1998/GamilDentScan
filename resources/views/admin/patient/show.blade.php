@@ -142,7 +142,7 @@
                                                 class="btn btn-info waves-effect" title="تفاصيل الفحص">تفاصيل الفحص</a>
                                             <a href="{{ route('admin.patient.scans.edit', $scan->id) }}" target="_blank"
                                                 class="btn btn-success waves-effect" title="تعديل">تعديل</a>
-                                                <input class="btn btn-dark" onclick=printDiv() value="print">
+                                                {{-- <input class="btn btn-dark" onclick=printDiv() value="طباعة"> --}}
                                             <button type="button" class="btn btn-danger waves-effect" data-toggle="modal"
                                                 data-target="#{{ $scan->id }}delete" title="حذف">حذف </button>
                                         </td>
@@ -174,10 +174,10 @@
                 </tr>
                 </table>
             </fieldset></div> --}}
-            <center>
+            {{-- <center>
                 <div id="GFG" style="text-direction:rtl">
 
-                    <table border="1px" width="455 px" height="150 px" class="text-white">
+                    <table border="1px" width="455 px" height="150 px" class="text-dark">
                         <tr>
                             <td>{{$patient->name}}</td>
                             <td>الأسم</td>
@@ -192,7 +192,7 @@
                         </tr>
                     </table>
                 </div>
-            </center>
+            </center> --}}
         @endforeach
     </div>
     <script>
@@ -233,6 +233,7 @@
             a.document.write('</body></html>');
             a.document.close();
             a.print();
+            a.close();
             self.close();
         }
     </script>
