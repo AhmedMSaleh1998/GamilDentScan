@@ -49,6 +49,26 @@
                             <td>{{ $scan->dentist->name }}</td>
                         </tr>
                         <tr>
+                            <td>المطلوب </td>
+                            <td>
+                                @switch ($scan->type)
+                                @case(1)
+
+                                    whatsapp
+                                    @break;
+
+                                @case(2)
+
+                                    dvd
+                                    @break;
+
+                                @case(3)
+
+                                    report
+                                @endswitch
+                            </td>
+                        </tr>
+                        <tr>
                             <td>السعر قبل الخصم </td>
                             <td>
                                 @switch ($scan->status)
@@ -80,7 +100,35 @@
                             <td>الباقي </td>
                             <td>{{ $scan->total_price_after_discount-$scan->paid_by_patient }}</td>
                         </tr>
-                        
+                        <tr>
+                            <td>الجهة </td>
+                            <td>{{ $scan->organization->name }}</td>
+                        </tr>
+                        <tr>
+                            <td>وقت الحجز </td>
+                            <td>{{ $scan->created_at}}</td>
+                        </tr>
+                        <tr>
+                            <td>وقت التأكيد </td>
+                            <td>{{ $scan->delivery_time}}</td>
+                        </tr>
+                        <tr>
+                            <td>وقت دخول غرفة الأشعة</td>
+                            <td>{{ $scan->working_on_time}}</td>
+                        </tr>
+                        <tr>
+                            <td>وقت الاستلام </td>
+                            <td>{{ $scan->reciving_time}}</td>
+                        </tr>
+                        <tr>
+                            <td>اسم المستلم </td>
+                            <td>{{ $scan->reciever_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>لينك ديكوم فايل </td>
+                            <td><a href="{{ $scan->dicom_file_link}}">{{ $scan->dicom_file_link}}</a></td>
+                        </tr>
+
                         {{-- <tr>
                             <td>صور المشروع</td>
                             @foreach ($district->projectImages as $image)
@@ -91,27 +139,31 @@
                 </table>
             </div>
         </div><!-- end col -->
-        <center>
+
             <div  style="text-direction:rtl" id="GFG">
 
-                <table border="1px" width="455 px" height="150 px" class="text-dark" >
+                <table border="2px" width="455 px" height="148 px" class="text-dark" >
                     <tr>
                         <td>{{$scan->patient->name}}</td>
                         <td>الأسم</td>
+                    </tr>
+                    <tr>
+                        <td>{{$scan->patient->age()}}</td>
+                        <td>السن</td>
                     </tr>
                     <tr>
                         <td>{{$scan->scanType->name}}</td>
                         <td>الفحص</td>
                     </tr>
                     <tr>
-                        <td>{{$scan->created_at}}</td>
-                        <td>التاريخ</td>
+                        <td>{{$scan->created_at->toDateString()}}</td>
+                        <td>تاريخ الفحص</td>
                     </tr>
                 </table>
-                
+
             </div>
             <input class="btn btn-dark" onclick=printDiv() value="طباعة" id="button">
-        </center>
+
     </div>
     <script>
         function printDiv() {

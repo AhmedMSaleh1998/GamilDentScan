@@ -43,7 +43,8 @@
                         <thead>
                             <tr>
                                 <th data-field="اسم الطبيب" data-align="center">نوع الفحص</th>
-                                <th data-field="السعر" data-align="center">سعر التقرير</th>
+                                <th data-field="سعر التقرير" data-align="center">سعر التقرير</th>
+                                <th data-field="المنظمة" data-align="center">المنظمة</th>
                                 <th data-field="الوقت المتوقع للأستلام" data-align="center">الوقت المتوقع للأستلام</th>
                                 <th data-field="التحكم" data-align="center">التحكم</th>
                             </tr>
@@ -54,6 +55,7 @@
                                 <tr>
                                     <td>{{ $scanType->name }}</td>
                                     <td>{{ $scanType->report_price}}</td>
+                                    <td>{{ $scanType->organization->name}}</td>
                                     <td>{{ $scanType->base_recieving_time }}</td>
 
                                     <td class="actions">

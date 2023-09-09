@@ -56,6 +56,10 @@
                             <td> الوقت المتوقع للأستلام</td>
                             <td>{{ $scanType->base_recieving_time }}</td>
                         </tr>
+                        <tr>
+                            <td> اسم المنظمة</td>
+                            <td>{{ $scanType->organization->name }}</td>
+                        </tr>
                         {{-- <tr>
                             <td>صور المشروع</td>
                             @foreach ($scanType->projectImages as $image)

@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card-box">
-                <h4 class="header-title m-t-0 m-b-20">تعديل بيانات مريض</h4>
+                <h4 class="header-title m-t-0 m-b-20">تعديل بيانات طبيب اسنان</h4>
                 <form method="post" action="{{route('admin.dentist.update',$dentist->id)}}">
                 @csrf
                 @method('PUT')
@@ -99,7 +99,8 @@
                                 <select name="district_id" id="district_id" required value="{{ old('district_id') ? old('district_id') : $dentist->district_id }}" class="select2 select2-multiple select2-hidden-accessible">
                                     <option value="">اختر المنطقة</option>
                                     @foreach ($districts as $district )
-                                    <option value={{$district->id}}>{{$district->name}}</option>
+                                    {{-- <option value={{$district->id}}>{{$district->name}}</option> --}}
+                                    <option  value="{{$district->id}}" @if( $district->id  == $dentist->district_id)  selected @endif >{{ $district->name }}</option>
                                     @endforeach
                                 </select>
                             </td>

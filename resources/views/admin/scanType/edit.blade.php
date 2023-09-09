@@ -44,6 +44,22 @@
                 <table class="table table-bordered table-striped">
                     <tbody>
                         <tr>
+                            <td>اختر المنظمة  </td>
+                            <td>
+                                <select name="organization_id" id="organization_id" required class="select2 select2-multiple select2-hidden-accessible">
+                                    <option value="">اختر المنظمة</option>
+                                    @foreach ($organizations as $organization )
+                                    <option  value="{{$organization->id}}" @if( $organization->id  == $scanType->organization_id)  selected @endif >{{ $organization->name }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            @if ($errors->has('organization_id'))
+                            <span class="alert alert-danger">
+                                <strong>{{ $errors->first('organization_id') }}</strong>
+                            </span>
+                            @endif
+                        </tr>
+                        <tr>
                             <td>نوع الفحص</td>
                             <td><input type="text" class="form-control" name="name" required
                                     value="{{ old('name') ? old('name') : $scanType->name }}"></td>

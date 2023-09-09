@@ -10,7 +10,7 @@
                 <div class="alert alert-danger">{{ Session::get('danger') }}</div>
             @endif
             <a style="color: #fff;" href="{{route('admin.home')}}">الرئيسية</a>
-            <a style="color: #fff;" href="{{route('admin.dentist.index')}}">/ المرضي / </a>
+            <a style="color: #fff;" href="{{route('admin.dentist.index')}}">/ اطباء الاسنان / </a>
             <a style="color: #36404a;"> مشاهدة </a>
 
             <ul>

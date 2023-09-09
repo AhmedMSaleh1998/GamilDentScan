@@ -55,7 +55,7 @@
                                     <td>{{ $dentist->name }}</td>
                                     <td>{{ $dentist->phone_one}}<a target="_blank" href="https://wa.me/+2{{$dentist->phone_one}}"><button style="font-size:12px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
                                     <td>{{ $dentist->phone_two }}<a target="_blank" href="https://wa.me/+2{{$dentist->phone_two}}"><button style="font-size:12px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
-                                    
+
                                     <td class="actions">
                                         <a href="{{ route('admin.dentist.show', $dentist->id) }}"
                                             class="btn btn-info waves-effect" title="تفاصيل الطبيب">تفاصيل الطبيب</a>
@@ -63,7 +63,7 @@
                                             class="btn btn-success waves-effect" title="تعديل">تعديل</a>
                                         <button type="button" class="btn btn-danger waves-effect" data-toggle="modal"
                                             data-target="#{{ $dentist->id }}delete" title="حذف">حذف </button>
-                                        <a href="#"
+                                        <a href="{{route('admin.dentist.patients' , $dentist->id)}}"
                                             class="btn btn-inverse waves-effect" title="حالات الطبيب">حالات الطبيب</a>
                                     </td>
                                 </tr>

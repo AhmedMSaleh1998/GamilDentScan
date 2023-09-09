@@ -6,6 +6,7 @@ use App\Http\Requests\Dentist\AddDentistRequest;
 use App\Http\Requests\Dentist\EditDentistRequest;
 use App\Models\Dentist;
 use App\Models\District;
+use App\Models\Scan;
 use Illuminate\Http\Request;
 class DentistController extends Controller
 {
@@ -16,6 +17,13 @@ class DentistController extends Controller
     {
         $dentists = Dentist::all();
         return view('admin.dentist.index', compact('dentists'));
+    }
+
+    public function patients($id)
+    {
+
+        $scans = Scan::where('dentist_id' , $id)->get();
+        return view('admin.dentist.scans', compact('scans'));
     }
 
     /**
@@ -33,7 +41,7 @@ class DentistController extends Controller
     public function store(AddDentistRequest $request)
     {
         dentist::create($request->validated());
-        return redirect(route('admin.dentist.index'))->with(['success' => 'تم إنشاء مريض جديد بنجاح']);
+        return redirect(route('admin.dentist.index'))->with(['success' => 'تم إنشاء طبيب جديد بنجاح']);
     }
 
     /**

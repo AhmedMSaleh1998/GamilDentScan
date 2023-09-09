@@ -29,7 +29,9 @@ class AddScanRequest extends FormRequest
             'total_price_after_discount'         => 'required',
             'paid_by_patient'                    => 'required',
             'discount_reason'                    => 'nullable',
+            'organization_id'                    => 'required',
             'status'                             => 'required',
+            'type'                               => 'required',
         ];
     }
 }

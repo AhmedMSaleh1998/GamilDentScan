@@ -142,10 +142,37 @@
                                                 class="btn btn-info waves-effect" title="تفاصيل الفحص">تفاصيل الفحص</a>
                                             <a href="{{ route('admin.patient.scans.edit', $scan->id) }}" target="_blank"
                                                 class="btn btn-success waves-effect" title="تعديل">تعديل</a>
-                                                {{-- <input class="btn btn-dark" onclick=printDiv() value="طباعة"> --}}
+                                                <a href="{{ route('admin.patient.scans.files.index', $scan->id) }}" target="_blank"
+                                                    class="btn btn-dark waves-effect" title="ملفات">ملفات</a>
                                             <button type="button" class="btn btn-danger waves-effect" data-toggle="modal"
                                                 data-target="#{{ $scan->id }}delete" title="حذف">حذف </button>
                                         </td>
+                                        <div id="{{ $scan->id }}delete" class="modal fade" tabindex="-1" role="dialog"
+                                            aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog" style="width:55%;">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-hidden="true">×</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="icon error animateErrorIcon" style="display: block;"><span
+                                                                class="x-mark animateXMark"><span class="line left"></span><span
+                                                                    class="line right"></span></span></div>
+                                                        <h4 style="text-align:center;">تأكيد الحذف</h4>
+                                                    </div>
+                                                    <div class="modal-footer" style="text-align:center">
+                                                        <form action="{{ route('admin.patient.scans.delete', $scan->id) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <input name="_method" type="hidden" value="DELETE">
+                                                            <button class="btn btn-danger" type="submit"
+                                                                dir="ltr">حذف</button>
+                                                        </form>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
                                 </tr>
                                 @endforeach
                             </tbody>

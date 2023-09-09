@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Dentist extends Model 
+class Dentist extends Model
 {
 
     protected $table = 'dentists';
@@ -15,5 +15,14 @@ class Dentist extends Model
 
     protected $dates = ['deleted_at'];
     protected $fillable = array('name', 'phone_one', 'phone_two', 'address_one', 'address_two', 'email_one', 'email_two', 'district_id');
+
+    public function district()
+    {
+        return $this->belongsTo('App\models\District');
+    }
+
+    public function scans(){
+        $this->hasMany('App\Models\Scan');
+    }
 
 }

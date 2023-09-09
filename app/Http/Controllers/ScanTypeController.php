@@ -52,7 +52,8 @@ class ScanTypeController extends Controller
     public function edit($id)
     {
         $scanType = ScanType::find($id);
-        return view('admin.scanType.edit', compact('scanType'));
+        $organizations = Organization::all();
+        return view('admin.scanType.edit', compact('scanType' , 'organizations'));
     }
 
     /**

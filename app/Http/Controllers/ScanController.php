@@ -9,6 +9,7 @@ use App\Models\Scan;
 use App\Models\Technician;
 use App\Models\ScanType;
 use App\Models\Organization;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ScanController extends Controller
@@ -22,16 +23,22 @@ class ScanController extends Controller
         return view('admin.patientScans.index', compact('scans', 'id'));
     }
 
+    public function All()
+    {
+        $scans = Scan::all();
+        return view('admin.scans.all', compact('scans'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create($id)
     {
-        $scanTypes = ScanType::all();
+        //$scanTypes = ScanType::all();
         $dentists  = Dentist::all();
         $technicians = Technician::all();
         $organizations = Organization::all();
-        return view('admin.patientScans.create', compact('dentists', 'scanTypes', 'technicians', 'organizations', 'id'));
+        return view('admin.patientScans.create', compact('dentists', 'technicians', 'organizations', 'id'));
     }
     /*
         * Store a newly created resource in storage.
@@ -41,6 +48,7 @@ class ScanController extends Controller
 
         $newScan = $request->validated();
         $scan = new Scan;
+        $scan->organization_id                 = $newScan['organization_id'];
         $scan->patient_id                      = $newScan['patient_id'];
         $scan->scan_type_id                    = $newScan['scan_type_id'];
         $scan->dentist_id                      = $newScan['dentist_id'];
@@ -50,9 +58,12 @@ class ScanController extends Controller
         $scan->paid_by_patient                 = $newScan['paid_by_patient'];
         $scan->discount_reason                 = $newScan['discount_reason'];
         $scan->status                          = $newScan['status'];
+        $scan->type                            = $newScan['type'];
         $scanType = ScanType::find($newScan['scan_type_id']);
         $scan->current_reciptionist_commission = $scanType->receptionist_commision;
         $scan->current_technician_commission   = $scanType->technicain_commision;
+        /* $scan->organization_id   = $scanType->organization->id; */
+        $scan->reservation_time   = carbon::now();
         switch ($newScan['status']) {
             case 1:
 
@@ -87,15 +98,20 @@ class ScanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $scan = Scan::find($id);
+        $dentists  = Dentist::all();
+        $technicians = Technician::all();
+        $organizations = Organization::all();
+        $scanTypes = ScanType::all();
+        return view('admin.patientScans.edit' , compact('scan' , 'id' , 'dentists' , 'technicians' , 'organizations','scanTypes'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(EditScanRequest $request, string $id)
+    public function update(EditScanRequest $request, $id)
     {
         //
     }
@@ -110,9 +126,9 @@ class ScanController extends Controller
         return redirect()->back()->with(['success' => 'تم حذف الفحص بنجاح']);
     }
 
-    public function fetchٍScanType(Request $request)
+    public function fetchScanType(Request $request)
     {
-        $data = ScanType::where("organization_id", $request->organization_id)->get(["name", "id"]);
+        $data['scanTypes'] = ScanType::where("organization_id", $request->organization_id)->get();
         return response()->json($data);
     }
 }

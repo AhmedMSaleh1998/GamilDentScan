@@ -16,7 +16,7 @@
                 @elseif(Session::has('danger'))
                     <div class="alert alert-danger">{{ Session::get('danger') }}</div>
                 @endif
-                <h4 class="page-title">المرضي</h4>
+                <h4 class="page-title">الفحوصات الخاصة بمرضي الطبيب </h4>
             </div>
 
         </div>
@@ -26,49 +26,56 @@
         <div class="col-lg-12">
             <div class="card-box">
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class=" main-btn-00">
-                            <!-- Responsive modal -->
-                            <a href="{{ route('admin.patient.create') }}" class="btn btn-default waves-effect"> اضافه مريض</a>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="table-responsive">
                     <table data-toggle="table" data-search="true" data-show-columns="true" data-sort-name="id"
-                        data-page-list="[100, 500, 1000]" data-page-size="5000" data-pagination="true"
+                        data-page-list="[8, 16, 32]" data-page-size="1000" data-pagination="true"
                         data-show-pagination-switch="true" class="table-bordered ">
 
                         <thead>
                             <tr>
-                                <th data-field="اسم المريض" data-align="center">اسم المريض</th>
-                                <th data-field="السن حالياً" data-align="center">السن حالياً</th>
-                                <th data-field="الهاتف" data-align="center">الهاتف</th>
+                                <th data-field="اسم الفحص" data-align="center">اسم الفحص</th>
+                                <th data-field="اسم الطبيب" data-align="center">اسم الطبيب</th>
+                                <th data-field="السعر" data-align="center">السعر</th>
+                                <th data-field="بعد الخصم" data-align="center">بعد الخصم</th>
                                 <th data-field="التحكم" data-align="center">التحكم</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @if (isset($patients)) --}}
-                            @foreach ($patients as $patient)
+                            {{-- @if (isset($districts)) --}}
+                            @foreach ($scans as $scan)
                                 <tr>
-                                    <td>{{ $patient->name }}</td>
-                                    <td>{{ $patient->age()}}</td>
-                                    <td>{{ $patient->phone_one}}<a target="_blank" href="https://wa.me/+2{{$patient->phone_one}}"><button style="font-size:12px;color:green;margin-right:15px;"><i class="fa fa-whatsapp"></i></button></a></td>
+                                    <td>{{ $scan->scanType->name }}</td>
+                                    <td>{{ $scan->dentist->name }}</td>
+                                    <td>
+                                    @switch ($scan->status)
+                                        @case(1)
+
+                                            {{$scan->scanType->whatsapp_price}}
+                                            @break;
+
+                                        @case(2)
+
+                                            {{$scan->scanType->dvd_price}}
+                                            @break;
+
+                                        @case(3)
+
+                                            {{$scan->scanType->report_price}}
+                                    @endswitch
+                                    </td>
+                                    <td>{{ $scan->total_price_after_discount}}</td>
 
                                     <td class="actions">
-                                        <a href="{{ route('admin.patient.show', $patient->id) }}"
-                                            class="btn btn-info waves-effect" title="تفاصيل الحالة">تفاصيل الحالة</a>
-                                        <a href="{{ route('admin.patient.edit', $patient->id) }}"
-                                            class="btn btn-success waves-effect" title="تعديل">تعديل</a>
+                                        <a href="{{ route('admin.patient.scans.show', $scan->id) }}"
+                                            class="btn btn-info waves-effect" title="تفاصيل الفحص">تفاصيل الفحص</a>
+                                            <a href="{{ route('admin.patient.scans.edit', $scan->id) }}" target="_blank"
+                                                class="btn btn-success waves-effect" title="تعديل">تعديل</a>
                                         <button type="button" class="btn btn-danger waves-effect" data-toggle="modal"
-                                            data-target="#{{ $patient->id }}delete" title="حذف">حذف </button>
-                                        <a href="{{ route('admin.patient.scans.index' , $patient->id)}}"
-                                            class="btn btn-inverse waves-effect" title="ملفات المريض">فحوصات المريض</a>
+                                            data-target="#{{ $scan->id }}delete" title="حذف">حذف </button>
                                     </td>
                                 </tr>
 
-                                <div id="{{ $patient->id }}delete" class="modal fade" tabindex="-1" role="dialog"
+                                <div id="{{ $scan->id }}delete" class="modal fade" tabindex="-1" role="dialog"
                                     aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                     <div class="modal-dialog" style="width:55%;">
                                         <div class="modal-content">
@@ -83,7 +90,7 @@
                                                 <h4 style="text-align:center;">تأكيد الحذف</h4>
                                             </div>
                                             <div class="modal-footer" style="text-align:center">
-                                                <form action="{{ route('admin.patient.destroy', $patient->id) }}"
+                                                <form action="{{ route('admin.patient.scans.delete', $scan->id) }}"
                                                     method="post">
                                                     @csrf
                                                     <input name="_method" type="hidden" value="DELETE">

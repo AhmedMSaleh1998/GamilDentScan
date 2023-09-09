@@ -26,9 +26,10 @@ class AddScanTypeRequest extends FormRequest
             'receptionist_commision' => 'required',
             'technicain_commision'   => 'required',
             'base_recieving_time'    => 'required',
-            'whatsapp_price'    => 'required',
-            'dvd_price'    => 'required',
-            'report_price'    => 'required',
+            'whatsapp_price'         => 'required',
+            'dvd_price'              => 'required',
+            'report_price'           => 'required',
+            'organization_id'        => 'required',
         ];
     }
 }

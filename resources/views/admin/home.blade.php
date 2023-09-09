@@ -34,7 +34,7 @@
                      <h3 class="text-dark"><b class="counter"></b></h3>
                      <p class="text-muted mb-0">المرضي</p>
                  </div>
-                 <div class="clearfix"></div>
+                 <div class="clearfix">{{$patientCount}}</div>
              </div>
          </div>
 
@@ -47,7 +47,7 @@
                      <h3 class="text-dark"><b class="counter"></b></h3>
                      <p class="text-muted mb-0">أطباء الأسنان</p>
                  </div>
-                 <div class="clearfix"></div>
+                 <div class="clearfix">{{$dentistCount}}</div>
              </div>
          </div>
 
@@ -60,7 +60,7 @@
                      <h3 class="text-dark"><b class="counter"></b></h3>
                      <p class="text-muted mb-0">فنيين الأشعة</p>
                  </div>
-                 <div class="clearfix"></div>
+                 <div class="clearfix">{{$technicianCount}}</div>
              </div>
          </div>
 
@@ -73,7 +73,7 @@
                      <h3 class="text-dark"><b class="counter"></b></h3>
                      <p class="text-muted mb-0">موظفوا الاستقبال</p>
                  </div>
-                 <div class="clearfix"></div>
+                 <div class="clearfix">{{$receptionistCount}}</div>
              </div>
          </div>
      </div>

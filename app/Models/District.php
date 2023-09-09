@@ -5,7 +5,7 @@ namespace App\models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class District extends Model
+class District extends Model 
 {
 
     protected $table = 'districts';
@@ -20,4 +20,5 @@ class District extends Model
     {
         return $this->hasMany('App\Models\Dentist');
     }
+
 }

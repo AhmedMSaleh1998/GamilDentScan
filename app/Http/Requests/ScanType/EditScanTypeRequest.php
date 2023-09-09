@@ -29,6 +29,7 @@ class EditScanTypeRequest extends FormRequest
             'whatsapp_price'         => 'required',
             'dvd_price'              => 'required',
             'report_price'           => 'required',
+            'organization_id'        => 'required',
         ];
     }
 }

@@ -10,6 +10,7 @@
 <link href="{{ asset('admin_assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('admin_assets/plugins/bootstrap-table/css/bootstrap-table.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('admin_assets/plugins/custombox/css/custombox.css') }}" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 @endsection
 
 @section('content')
@@ -42,6 +43,7 @@
             <table class="table table-bordered table-striped">
                 <tbody>
                     <input type="hidden" name="patient_id" value="{{ $id }}">
+                    <input type="hidden" name="status" value="2">
                     <tr>
                         <td>اسم المنظمة</td>
                         <td>
@@ -58,28 +60,17 @@
                         </span>
                         @endif
                     </tr>
+
                     <tr>
-                        <div class="form-group">
-                            <label>
-                                نوع الفحص
-                            </label>
-                            <select name="scan_type_id" id="scan" class="form-control">
-                                @if(isset($scans))
-                                    @foreach($scans as $scan)
-                                    <option value="{{$scan->id}}">{{$scan->name}}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                    </tr>
-                    {{-- <tr>
-                        <td>نوع الفحص</td>
+                        <td>الفحوصات</td>
                         <td>
-                            <select name="scan_type_id" id="scan_type_id" required class="select2 select2-multiple select2-hidden-accessible">
-                                <option value="">اختر نوع الأشعة</option>
+                            <select name="scan_type_id" id="scanType" class="select2 select2-multiple select2-hidden-accessible">
+                                <option value="">اختر المنظمة حتي تظهر لك الفحوصات الخاصة بها</option>
+                                @if(isset($scanTypes))
                                 @foreach ($scanTypes as $scanType )
-                                <option value={{$scanType->id}}>{{$scanType->name}}-------report--{{$scanType->report_price}}||whatsapp--{{$scanType->whatsapp_price}}||dvd--{{$scanType->dvd_price}}</option>
+                                <option value={{$scanType->id}}>{{$scanType->name}}</option>
                                 @endforeach
+                                @endif
                             </select>
                         </td>
                         @if ($errors->has('scan_type_id'))
@@ -87,20 +78,21 @@
                             <strong>{{ $errors->first('scan_type_id') }}</strong>
                         </span>
                         @endif
-                    </tr> --}}
+                    </tr>
+
                     <tr>
                         <td>اختر المطلوب</td>
                         <td>
-                            <select name="status" id="status" required class="select2 select2-multiple select2-hidden-accessible">
+                            <select name="type" id="type" required class="select2 select2-multiple select2-hidden-accessible">
                                 <option value="">اختر المطلوب </option>
                                 <option value="1">whatsapp</option>
                                 <option value="2">dvd</option>
                                 <option value="3">report</option>
                             </select>
                         </td>
-                        @if ($errors->has('status'))
+                        @if ($errors->has('type'))
                         <span class="alert alert-danger">
-                            <strong>{{ $errors->first('status') }}</strong>
+                            <strong>{{ $errors->first('type') }}</strong>
                         </span>
                         @endif
                     </tr>
@@ -181,10 +173,11 @@
     </div><!-- end col -->
 </div>
 <script>
+
     $(document).ready(function() {
         $('#organization').on('change', function() {
             var organization = this.value;
-            $("#scan").html('');
+            $("#scanType").html('');
             $.ajax({
                 url: "{{url('admin/fetch-scanTypes')}}",
                 type: "POST",
@@ -194,9 +187,9 @@
                 },
                 dataType: 'json',
                 success: function(res) {
-                    $('#scan').html('<option value="">برجاء اختيار الدولة اولاً حتي تظهر المحافظات التابعة لها</option>');
-                    $.each(res.scans, function(key, value) {
-                        $("#scan").append('<option value="' + value
+                    $('#scanType').html('<option value="">اختر الفحص المراد</option>');
+                    $.each(res.scanTypes, function(key, value) {
+                        $("#scanType").append('<option value="' + value
                             .id + '">' + value.name + '</option>');
                     });
                 }

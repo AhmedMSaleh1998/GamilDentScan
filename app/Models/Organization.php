@@ -5,7 +5,7 @@ namespace App\models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Organization extends Model
+class Organization extends Model 
 {
 
     protected $table = 'organizations';
@@ -15,4 +15,10 @@ class Organization extends Model
 
     protected $dates = ['deleted_at'];
     protected $fillable = array('name');
+
+    public function scanTypes()
+    {
+        return $this->hasMany('App\Models\ScanType');
+    }
+
 }
