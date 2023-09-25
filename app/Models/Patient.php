@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Models;
-use Carbon\Carbon;
+namespace App\models;
+
 use Illuminate\Database\Eloquent\Model;
 
-class Patient extends Model
+class Patient extends Model 
 {
 
     protected $table = 'patients';
     public $timestamps = true;
-    protected $fillable = array('name', 'birth_date', 'address', 'phone_one', 'phone_two', 'email', 'request_photo');
+    protected $fillable = array('name', 'birth_date', 'address', 'phone_one', 'phone_two', 'email');
 
-    public function age()
-    {
-        return Carbon::parse($this->attributes['birth_date'])->age;
-    }
 }

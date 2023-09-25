@@ -190,7 +190,7 @@
                     $('#scanType').html('<option value="">اختر الفحص المراد</option>');
                     $.each(res.scanTypes, function(key, value) {
                         $("#scanType").append('<option value="' + value
-                            .id + '">' + value.name + '</option>');
+                            .id + '">' + value.name + '--تقرير--'+value.report_price + '--واتساب--' + value.whatsapp_price + '--اسطوانه--' + value.dvd_price +'</option>');
                     });
                 }
             });

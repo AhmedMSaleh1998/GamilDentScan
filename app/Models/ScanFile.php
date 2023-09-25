@@ -1,10 +1,10 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ScanFile extends Model
+class ScanFile extends Model 
 {
 
     protected $table = 'scan_files';

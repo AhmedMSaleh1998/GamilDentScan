@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ScanController;
 use App\Http\Controllers\DentistController;
+use App\Http\Controllers\DistrictController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,8 +23,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/home', 'IndexController@index')->name('home');
         Route::resource('patient', 'PatientController');
         Route::resource('dentist', 'DentistController');
-        Route::get('/dentist/show/{id}',[DentistController::class, 'show'])->name('dentist.show');
-        Route::get('/dentist/{id}/scans',[DentistController::class, 'patients'])->name('dentist.patients');
+        Route::get('/dentist/show/{id}', [DentistController::class, 'show'])->name('dentist.show');
+        Route::get('/dentist/{id}/scans', [DentistController::class, 'patients'])->name('dentist.patients');
+        Route::get('/district/{id}/dentists', [DistrictController::class, 'dentists'])->name('district.dentists');
         //Route::get('dentist/scans', 'DentistController@patients')->name('dentist.patients');
         Route::resource('scanType', 'ScanTypeController');
         Route::resource('organization', 'OrganizationController');
@@ -42,10 +44,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         Route::controller(ScanFileController::class)->group(
             function () {
-        Route::get('patient/scans/{id}/file/', 'index')->name('patient.scans.files.index');
-        Route::get('patient/scans/{id}/file/create', 'create')->name('patient.scans.files.create');
-        Route::post('patient/scans/{id}/file/store', 'store')->name('patient.scans.files.store');
-        Route::delete('patient/scans/{id}/file/delete', 'destroy')->name('patient.scans.files.destroy');
+                Route::get('patient/scans/{id}/file/', 'index')->name('patient.scans.files.index');
+                Route::get('patient/scans/{id}/file/create', 'create')->name('patient.scans.files.create');
+                Route::post('patient/scans/{id}/file/store', 'store')->name('patient.scans.files.store');
+                Route::delete('patient/scans/{id}/file/delete', 'destroy')->name('patient.scans.files.destroy');
             }
         );
 
@@ -63,6 +65,4 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     Route::get('/https://wa.me/{phone}?text=')->name('whatsapp');
     Route::get('/scanTypes/{organization_id}', [ScanController::class, 'getScanTypes']);
-
-
 });

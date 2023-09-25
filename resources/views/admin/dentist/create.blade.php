@@ -107,7 +107,7 @@
                     <tr>
                         <td>المنطقة</td>
                         <td>
-                            <select name="district_id" id="district_id" required class="select2 select2-multiple select2-hidden-accessible">
+                            <select name="district_id" id="district_id" class="select2 select2-multiple select2-hidden-accessible">
                                 <option value="">اختر المنطقة</option>
                                 @foreach ($districts as $district )
                                 <option value={{$district->id}}>{{$district->name}}</option>

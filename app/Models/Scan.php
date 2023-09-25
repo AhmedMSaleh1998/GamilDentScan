@@ -9,7 +9,7 @@ class Scan extends Model
 
     protected $table = 'scans';
     public $timestamps = true;
-    protected $fillable = array('patient_id', 'scan_type_id', 'dentist_id', 'reciptionist_id', 'technician_id', 'current_price', 'total_price_after_discount', 'paid_by_patient', 'current_reciptionist_commission', 'current_technician_commission', 'is_recieved', 'whatsapp_sent', 'file', 'dicom_file_link', 'reservation_time', 'working_on_time', 'delivery_time', 'reciving_time', 'recieved_time', 'reciever_name', 'status', 'type', 'discount_reason', 'organization_id');
+    protected $fillable = array('patient_id', 'scan_type_id', 'dentist_id', 'receptionist_id', 'technician_id', 'current_price', 'total_price_after_discount', 'paid_by_patient', 'current_receptionist_commission', 'current_technician_commission', 'is_recived', 'whatsapp_sent', 'dicom_file_link', 'reservation_time', 'organization_id', 'discount_reason', 'type', 'status', 'confirmation_time', 'working_time', 'receipt_time', 'recevied_time', 'recevier_name');
 
     public function scanType()
     {
@@ -26,19 +26,19 @@ class Scan extends Model
         return $this->belongsTo('App\Models\Receptionist');
     }
 
-    public function technician()
+    public function technicians()
     {
-        return $this->belongsTo('App\Models\Patient');
+        return $this->belongsTo('App\Models\Technician');
     }
 
     public function patient()
     {
-        return $this->belongsTo('App\Models\Patient');
+        return $this->belongsTo('App\models\Patient');
     }
 
     public function organization()
     {
-        return $this->belongsTo('App\models\Organization');
+        return $this->belongsTo('App\Models\Organization');
     }
 
 }
