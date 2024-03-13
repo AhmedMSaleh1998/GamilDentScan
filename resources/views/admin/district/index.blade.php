@@ -59,7 +59,7 @@
                                             class="btn btn-success waves-effect" title="تعديل">تعديل</a>
                                         <button type="button" class="btn btn-danger waves-effect" data-toggle="modal"
                                             data-target="#{{ $district->id }}delete" title="حذف">حذف </button>
-                                        <a href="#"
+                                        <a href="{{ route('admin.district.dentists' , $district->id)}}"
                                             class="btn btn-inverse waves-effect" title="اطباء المنطقة">اطباء المنطقة</a>
                                     </td>
                                 </tr>

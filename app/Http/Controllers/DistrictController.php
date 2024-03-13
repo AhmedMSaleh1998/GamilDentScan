@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\District\AddDistrictRequest;
 use App\Http\Requests\District\EditDistrictRequest;
 use App\Models\District;
+use App\Models\Dentist;
 use Illuminate\Http\Request;
 
 class DistrictController extends Controller
@@ -16,6 +17,12 @@ class DistrictController extends Controller
     {
         $districts = District::all();
         return view('admin.district.index', compact('districts'));
+    }
+
+    public function dentists($id)
+    {
+        $dentists = Dentist::where('district_id', $id)->get();
+        return view('admin.district.dentists', compact('dentists'));
     }
 
     /**
