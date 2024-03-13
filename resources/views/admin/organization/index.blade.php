@@ -30,7 +30,7 @@
                     <div class="col-sm-12">
                         <div class=" main-btn-00">
                             <!-- Responsive modal -->
-                            <a href="{{ route('admin.organization.create') }}" class="btn btn-default waves-effect">إضافة منطقة جديد</a>
+                            <a href="{{ route('admin.organization.create') }}" class="btn btn-default waves-effect">إضافة منظمة جديد</a>
                         </div>
                     </div>
                 </div>

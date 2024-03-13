@@ -38,7 +38,7 @@ class Scan extends Model
 
     public function organization()
     {
-        return $this->belongsTo('App\models\Organization');
+        return $this->belongsTo('App\Models\Organization');
     }
 
 }

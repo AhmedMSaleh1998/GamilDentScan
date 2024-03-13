@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ScanType\AddScanTypeRequest;
 use App\Http\Requests\ScanType\EditScanTypeRequest;
-use App\models\Organization;
+use App\Models\Organization;
 use App\Models\ScanType;
 use Illuminate\Http\Request;
 
