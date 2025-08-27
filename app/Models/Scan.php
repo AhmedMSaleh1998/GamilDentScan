@@ -33,7 +33,7 @@ class Scan extends Model
 
     public function patient()
     {
-        return $this->belongsTo('App\models\Patient');
+        return $this->belongsTo('App\Models\Patient');
     }
 
     public function organization()
