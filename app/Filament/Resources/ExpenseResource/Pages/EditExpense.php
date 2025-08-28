@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Filament\Erp\Resources\ExpenseResource\Pages;
+
+use App\Filament\Resources\ExpenseResource;
+use Filament\Resources\Pages\EditRecord;
+use Filament\Actions;
+
+class EditExpense extends EditRecord
+{
+    protected static string $resource = ExpenseResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\DeleteAction::make(),
+        ];
+    }
+}
