@@ -74,7 +74,19 @@ class DentistResource extends Resource
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('phone_one')
-                    ->label('الهاتف الأول'),
+                    ->label('الهاتف الأول')
+                    ->searchable()
+                    ->url(fn ($record) => $record->phone_one ? "https://wa.me/+20{$record->phone_one}" : null, shouldOpenInNewTab: true)
+                    ->formatStateUsing(fn ($state) => $state ?? '-') // show "-" if empty
+                    ->color('success')
+                    ->icon('heroicon-o-phone'),
+                Tables\Columns\TextColumn::make('phone_two')
+                    ->label('الهاتف الثاني')
+                    ->searchable()
+                    ->url(fn ($record) => $record->phone_two ? "https://wa.me/+20{$record->phone_two}" : null, shouldOpenInNewTab: true)
+                    ->formatStateUsing(fn ($state) => $state ?? '-') // show "-" if empty
+                    ->color('success')
+                    ->icon('heroicon-o-phone'),
 
                 Tables\Columns\TextColumn::make('email_one')
                     ->label('البريد الإلكتروني الأول'),

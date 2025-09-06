@@ -1,18 +1,25 @@
 <?php
 
 namespace App\Models;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Patient extends Model
 {
 
     protected $table = 'patients';
     public $timestamps = true;
-    protected $fillable = array('name', 'birth_date', 'address', 'phone_one', 'phone_two', 'email', 'request_photo');
+    protected $guarded = ['id'];
 
+    /**
+     * Each scan belongs to one patient.
+     */
+    public function scans(): HasMany
+    {
+        return $this->hasMany(Scan::class, 'patient_id', 'id');
+    }
     public function age()
     {
-        return Carbon::parse($this->attributes['birth_date'])->age;
+        return '25';
     }
 }

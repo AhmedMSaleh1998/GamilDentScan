@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PatientResource\Pages;
 use App\Filament\Resources\PatientResource\RelationManagers;
+use App\Filament\Resources\PatientResource\RelationManagers\ScansRelationManager;
 use App\Models\Patient;
 use Carbon\Carbon;
 use Filament\Forms;
@@ -78,10 +79,20 @@ class PatientResource extends Resource
                     ->label('العنوان'),
 
                 Tables\Columns\TextColumn::make('phone_one')
-                    ->label('الهاتف الأول'),
+                    ->label('الهاتف الأول')
+                    ->searchable()
+                    ->url(fn ($record) => $record->phone_one ? "https://wa.me/{$record->phone_one}" : null, shouldOpenInNewTab: true)
+                    ->formatStateUsing(fn ($state) => $state ?? '-') // show "-" if empty
+                    ->color('success')
+                    ->icon('heroicon-o-phone'),
 
                 Tables\Columns\TextColumn::make('phone_two')
-                    ->label('الهاتف الثاني'),
+                    ->label('الهاتف الثاني')
+                    ->searchable()
+                    ->url(fn ($record) => $record->phone_two ? "https://wa.me/{$record->phone_two}" : null, shouldOpenInNewTab: true)
+                    ->formatStateUsing(fn ($state) => $state ?? '-')
+                    ->color('success')
+                    ->icon('heroicon-o-phone'),
 
                 Tables\Columns\TextColumn::make('email')
                     ->label('البريد الإلكتروني'),
@@ -114,7 +125,7 @@ class PatientResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ScansRelationManager::class,
         ];
     }
 
@@ -124,6 +135,7 @@ class PatientResource extends Resource
             'index' => Pages\ListPatients::route('/'),
             'create' => Pages\CreatePatient::route('/create'),
             'edit' => Pages\EditPatient::route('/{record}/edit'),
+            'view' => Pages\ViewPatient::route('/{record}'),
         ];
     }
 
