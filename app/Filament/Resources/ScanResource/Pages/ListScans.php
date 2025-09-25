@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\ScanResource\Pages;
 
 use App\Filament\Resources\ScanResource;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
 class ListScans extends ListRecords

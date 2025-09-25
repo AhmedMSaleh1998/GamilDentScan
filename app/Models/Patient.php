@@ -3,6 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Carbon\Carbon;
 
 class Patient extends Model
 {
@@ -18,8 +19,13 @@ class Patient extends Model
     {
         return $this->hasMany(Scan::class, 'patient_id', 'id');
     }
-    public function age()
+
+    public function age(): ?int
     {
-        return '25';
+        if (! $this->birth_date) {
+            return null; // or return 0 if you prefer
+        }
+
+        return Carbon::parse($this->birth_date)->age;
     }
 }

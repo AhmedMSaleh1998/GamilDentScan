@@ -3,6 +3,7 @@
 use App\Http\Controllers\ScanController;
 use App\Http\Controllers\DentistController;
 use App\Http\Controllers\DistrictController;
+use App\Models\Scan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,3 +67,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/https://wa.me/{phone}?text=')->name('whatsapp');
     Route::get('/scanTypes/{organization_id}', [ScanController::class, 'getScanTypes']);
 });
+
+
+Route::get('/scans/{scan}/print', function (Scan $scan) {
+    return view('scans.print', [
+        'scan' => $scan,
+        'patient' => $scan->patient,
+        'scanType' => $scan->scanType,
+    ]);
+})->name('scans.print');
