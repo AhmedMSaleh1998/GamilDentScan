@@ -100,7 +100,7 @@ class ScanResource extends Resource
                 TextInput::make('paid_by_patient')
                     ->label('المدفوع من قبل العميل')
                     ->required()
-                    ->reactive()
+                    ->live(onBlur: true)
                     ->afterStateUpdated(function($state ,Set $set , Get $get)
                     {
                         $remain = $get('total_price_after_discount') - $state;
@@ -124,17 +124,6 @@ class ScanResource extends Resource
                     ->required(),
                 TextInput::make('dicom_file_link')
                     ->label('ليك ديكوم فايل'),
-                DateTimePicker::make('reservation_time')
-                    ->label('توقيت الحجز')
-                    ->default(now()),
-                DateTimePicker::make('confirmation_time')
-                    ->label('توقيت التأكيد')
-                    ->default(now()),
-                DateTimePicker::make('working_time')
-                    ->label('توقيت اجراء الفحص')
-                    ->default(now()),
-                DateTimePicker::make('recevied_time')
-                    ->label('توقيت الاستلام'),
                 TextInput::make('recevier_name')
                     ->label('اسم المستلم')
             ]);
@@ -143,6 +132,7 @@ class ScanResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->poll('5s')
             ->columns([
                 TextColumn::make('patient_name')
                     ->label('اسم المريض')
@@ -158,7 +148,11 @@ class ScanResource extends Resource
                     ->getStateUsing(fn($record) => $record->technician->name),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('today')
+                    ->label('فحوصات اليوم')
+                    ->query(fn ($query) => 
+                        $query->whereDate('created_at', now()->toDateString())
+                    )
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
