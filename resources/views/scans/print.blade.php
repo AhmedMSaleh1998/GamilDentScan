@@ -26,7 +26,7 @@
 <body onload="window.print()">
     <table>
         <tr>
-            <th>اسم المريض</th>
+            <th>الاسم</th>
             <td>{{ $patient->name }}</td>
         </tr>
         <tr>
@@ -34,12 +34,12 @@
             <td>{{ $patient->age() ?? 'غير متوفر' }}</td>
         </tr>
         <tr>
-            <th>نوع الفحص</th>
+            <th>الفحص</th>
             <td>{{ $scanType->name }}</td>
         </tr>
         <tr>
-            <th>توقيت الفحص</th>
-            <td>{{ $scan->confirmation_time }}</td>
+            <th>التوقيت</th>
+            <td>{{ $scan->created_at }}</td>
         </tr>
     </table>
 </body>
